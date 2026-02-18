@@ -1,13 +1,10 @@
 from flask import Blueprint, request, jsonify
-from pymongo import MongoClient
+from config import db
 from bson import ObjectId
 
 user_bp = Blueprint("users", __name__)
 
-client = MongoClient("mongodb://localhost:27017/")
-db = client["saas_monitoring"]
 users_collection = db["users"]
-
 
 @user_bp.route("/users", methods=["POST"])
 def create_user():

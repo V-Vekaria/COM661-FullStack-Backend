@@ -1,18 +1,9 @@
 from flask import Flask, jsonify
-from pymongo import MongoClient
-from dotenv import load_dotenv
-import os
-load_dotenv()
-
-load_dotenv()
+from routes.user import user_bp
 
 app = Flask(__name__)
 
-from routes.user import user_bp
 app.register_blueprint(user_bp)
-
-client = MongoClient(os.getenv("MONGO_URI"))
-db = client["saas_monitoring"]
 
 @app.route("/health", methods=["GET"])
 def health_check():
