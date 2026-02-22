@@ -1,11 +1,10 @@
 from flask import Blueprint, request, jsonify
 from config import db
-from bson import ObjectId
 
 # --------------------------------------------------
 # Users Blueprint
 # Handles full CRUD operations for SaaS users
-# Includes pagination and ObjectId validation
+# Uses string-based _id values (not MongoDB ObjectId)
 # --------------------------------------------------
 
 user_bp = Blueprint("users", __name__)
@@ -52,37 +51,21 @@ def get_users():
     users_list = []
 
     for user in users_collection.find().skip(page_start).limit(page_size):
-        # Convert ObjectId to string for JSON serialization
-        user["_id"] = str(user["_id"])
-
-        # Convert nested usage_logs ObjectIds
-        for log in user.get("usage_logs", []):
-            log["_id"] = str(log["_id"])
-
         users_list.append(user)
 
     return jsonify(users_list), 200
 
 
 # --------------------------------------------------
-# GET ONE USER BY ID
+# GET ONE USER BY ID (String-based ID)
 # --------------------------------------------------
 @user_bp.route("/users/<string:id>", methods=["GET"])
 def get_one_user(id):
 
-    # Validate ObjectId format
-    if not ObjectId.is_valid(id):
-        return jsonify({"error": "Invalid user ID format"}), 400
-
-    user = users_collection.find_one({"_id": ObjectId(id)})
+    user = users_collection.find_one({"_id": id})
 
     if user is None:
         return jsonify({"error": "User not found"}), 404
-
-    user["_id"] = str(user["_id"])
-
-    for log in user.get("usage_logs", []):
-        log["_id"] = str(log["_id"])
 
     return jsonify(user), 200
 
@@ -92,9 +75,6 @@ def get_one_user(id):
 # --------------------------------------------------
 @user_bp.route("/users/<string:id>", methods=["PUT"])
 def update_user(id):
-
-    if not ObjectId.is_valid(id):
-        return jsonify({"error": "Invalid user ID format"}), 400
 
     data = request.json
 
@@ -112,7 +92,7 @@ def update_user(id):
         return jsonify({"error": "No valid fields provided"}), 400
 
     result = users_collection.update_one(
-        {"_id": ObjectId(id)},
+        {"_id": id},
         {"$set": update_fields}
     )
 
@@ -128,10 +108,7 @@ def update_user(id):
 @user_bp.route("/users/<string:id>", methods=["DELETE"])
 def delete_user(id):
 
-    if not ObjectId.is_valid(id):
-        return jsonify({"error": "Invalid user ID format"}), 400
-
-    result = users_collection.delete_one({"_id": ObjectId(id)})
+    result = users_collection.delete_one({"_id": id})
 
     if result.deleted_count == 0:
         return jsonify({"error": "User not found"}), 404
