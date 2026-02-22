@@ -1,8 +1,10 @@
+from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
-from dotenv import load_dotenv
 
 load_dotenv()
+
+print("Mongo URI inside config:", os.getenv("MONGO_URI"))
 
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client["saas_monitoring"]
