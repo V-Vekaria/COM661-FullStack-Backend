@@ -1,0 +1,569 @@
+[
+    {
+        "_id": "699b1bb7f1d564a7f0b71ecb",
+        "email": "user1@example.com",
+        "role": "admin",
+        "subscription_tier": "pro",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71ec8",
+                "api_calls": 1900,
+                "storage_mb": 3481,
+                "timestamp": "2026-01-25T15:07:35.720743"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ec9",
+                "api_calls": 3625,
+                "storage_mb": 1509,
+                "timestamp": "2026-01-28T15:07:35.720824"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71eca",
+                "api_calls": 4757,
+                "storage_mb": 4151,
+                "timestamp": "2026-01-31T15:07:35.720848"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71ed2",
+        "email": "user2@example.com",
+        "role": "user",
+        "subscription_tier": "pro",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71ecc",
+                "api_calls": 2430,
+                "storage_mb": 4234,
+                "timestamp": "2026-01-26T15:07:35.720893"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ecd",
+                "api_calls": 734,
+                "storage_mb": 5026,
+                "timestamp": "2026-01-27T15:07:35.720909"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ece",
+                "api_calls": 1834,
+                "storage_mb": 5548,
+                "timestamp": "2026-02-12T15:07:35.720924"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ecf",
+                "api_calls": 3662,
+                "storage_mb": 2265,
+                "timestamp": "2026-02-16T15:07:35.720938"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ed0",
+                "api_calls": 2409,
+                "storage_mb": 4407,
+                "timestamp": "2026-02-19T15:07:35.720951"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ed1",
+                "api_calls": 2302,
+                "storage_mb": 4285,
+                "timestamp": "2026-02-12T15:07:35.720969"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71ed6",
+        "email": "user3@example.com",
+        "role": "user",
+        "subscription_tier": "free",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71ed3",
+                "api_calls": 102,
+                "storage_mb": 667,
+                "timestamp": "2026-01-29T15:07:35.721024"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ed4",
+                "api_calls": 323,
+                "storage_mb": 1020,
+                "timestamp": "2026-01-23T15:07:35.721061"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ed5",
+                "api_calls": 576,
+                "storage_mb": 545,
+                "timestamp": "2026-01-25T15:07:35.721076"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71eda",
+        "email": "user4@example.com",
+        "role": "user",
+        "subscription_tier": "pro",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71ed7",
+                "api_calls": 2854,
+                "storage_mb": 3431,
+                "timestamp": "2026-01-28T15:07:35.721105"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ed8",
+                "api_calls": 4548,
+                "storage_mb": 4342,
+                "timestamp": "2026-01-23T15:07:35.721119"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ed9",
+                "api_calls": 2853,
+                "storage_mb": 1423,
+                "timestamp": "2026-02-08T15:07:35.721133"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71edf",
+        "email": "user5@example.com",
+        "role": "user",
+        "subscription_tier": "pro",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71edb",
+                "api_calls": 3532,
+                "storage_mb": 3454,
+                "timestamp": "2026-02-21T15:07:35.721159"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71edc",
+                "api_calls": 1599,
+                "storage_mb": 4906,
+                "timestamp": "2026-02-03T15:07:35.721172"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71edd",
+                "api_calls": 937,
+                "storage_mb": 5751,
+                "timestamp": "2026-02-20T15:07:35.721210"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ede",
+                "api_calls": 1405,
+                "storage_mb": 4872,
+                "timestamp": "2026-02-07T15:07:35.721301"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71ee6",
+        "email": "user6@example.com",
+        "role": "user",
+        "subscription_tier": "free",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee0",
+                "api_calls": 96,
+                "storage_mb": 823,
+                "timestamp": "2026-02-07T15:07:35.721352"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee1",
+                "api_calls": 177,
+                "storage_mb": 707,
+                "timestamp": "2026-02-04T15:07:35.721365"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee2",
+                "api_calls": 214,
+                "storage_mb": 233,
+                "timestamp": "2026-02-12T15:07:35.721377"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee3",
+                "api_calls": 517,
+                "storage_mb": 904,
+                "timestamp": "2026-02-12T15:07:35.721389"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee4",
+                "api_calls": 231,
+                "storage_mb": 959,
+                "timestamp": "2026-01-23T15:07:35.721440"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee5",
+                "api_calls": 644,
+                "storage_mb": 302,
+                "timestamp": "2026-02-12T15:07:35.721452"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71eeb",
+        "email": "user7@example.com",
+        "role": "user",
+        "subscription_tier": "free",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee7",
+                "api_calls": 132,
+                "storage_mb": 396,
+                "timestamp": "2026-02-06T15:07:35.721477"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee8",
+                "api_calls": 174,
+                "storage_mb": 882,
+                "timestamp": "2026-02-20T15:07:35.721489"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ee9",
+                "api_calls": 282,
+                "storage_mb": 437,
+                "timestamp": "2026-02-22T15:07:35.721504"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71eea",
+                "api_calls": 557,
+                "storage_mb": 623,
+                "timestamp": "2026-02-01T15:07:35.721516"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71ef2",
+        "email": "user8@example.com",
+        "role": "user",
+        "subscription_tier": "pro",
+        "account_status": "suspended",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71eec",
+                "api_calls": 2593,
+                "storage_mb": 4228,
+                "timestamp": "2026-02-20T15:07:35.721540"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71eed",
+                "api_calls": 2686,
+                "storage_mb": 1499,
+                "timestamp": "2026-02-13T15:07:35.721552"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71eee",
+                "api_calls": 2172,
+                "storage_mb": 5546,
+                "timestamp": "2026-02-13T15:07:35.721563"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71eef",
+                "api_calls": 3094,
+                "storage_mb": 4389,
+                "timestamp": "2026-02-05T15:07:35.721592"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ef0",
+                "api_calls": 2266,
+                "storage_mb": 1828,
+                "timestamp": "2026-02-12T15:07:35.721602"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ef1",
+                "api_calls": 2066,
+                "storage_mb": 6649,
+                "timestamp": "2026-02-13T15:07:35.721613"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71ef8",
+        "email": "user9@example.com",
+        "role": "user",
+        "subscription_tier": "free",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71ef3",
+                "api_calls": 494,
+                "storage_mb": 254,
+                "timestamp": "2026-02-18T15:07:35.721651"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ef4",
+                "api_calls": 176,
+                "storage_mb": 676,
+                "timestamp": "2026-01-27T15:07:35.721661"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ef5",
+                "api_calls": 468,
+                "storage_mb": 428,
+                "timestamp": "2026-02-20T15:07:35.721694"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ef6",
+                "api_calls": 601,
+                "storage_mb": 903,
+                "timestamp": "2026-01-23T15:07:35.721704"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71ef7",
+                "api_calls": 377,
+                "storage_mb": 654,
+                "timestamp": "2026-01-24T15:07:35.721715"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71eff",
+        "email": "user10@example.com",
+        "role": "user",
+        "subscription_tier": "enterprise",
+        "account_status": "suspended",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71ef9",
+                "api_calls": 13235,
+                "storage_mb": 39537,
+                "timestamp": "2026-02-13T15:07:35.721743"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71efa",
+                "api_calls": 10909,
+                "storage_mb": 6036,
+                "timestamp": "2026-02-10T15:07:35.721754"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71efb",
+                "api_calls": 13020,
+                "storage_mb": 32294,
+                "timestamp": "2026-02-05T15:07:35.721765"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71efc",
+                "api_calls": 12274,
+                "storage_mb": 7804,
+                "timestamp": "2026-02-07T15:07:35.721775"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71efd",
+                "api_calls": 8636,
+                "storage_mb": 45052,
+                "timestamp": "2026-02-14T15:07:35.721785"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71efe",
+                "api_calls": 9534,
+                "storage_mb": 66184,
+                "timestamp": "2026-02-07T15:07:35.721796"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71f05",
+        "email": "user11@example.com",
+        "role": "user",
+        "subscription_tier": "enterprise",
+        "account_status": "inactive",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71f00",
+                "api_calls": 10662,
+                "storage_mb": 16560,
+                "timestamp": "2026-02-11T15:07:35.721817"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f01",
+                "api_calls": 7932,
+                "storage_mb": 50477,
+                "timestamp": "2026-02-04T15:07:35.721828"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f02",
+                "api_calls": 10234,
+                "storage_mb": 17159,
+                "timestamp": "2026-02-08T15:07:35.721839"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f03",
+                "api_calls": 22969,
+                "storage_mb": 50075,
+                "timestamp": "2026-01-23T15:07:35.721849"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f04",
+                "api_calls": 7845,
+                "storage_mb": 38764,
+                "timestamp": "2026-02-22T15:07:35.721859"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f1e",
+                "api_calls": 120000,
+                "storage_mb": 200000,
+                "timestamp": "2026-02-22T15:07:35.722329"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71f0b",
+        "email": "user12@example.com",
+        "role": "user",
+        "subscription_tier": "free",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71f06",
+                "api_calls": 416,
+                "storage_mb": 357,
+                "timestamp": "2026-02-09T15:07:35.721879"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f07",
+                "api_calls": 325,
+                "storage_mb": 252,
+                "timestamp": "2026-02-02T15:07:35.721890"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f08",
+                "api_calls": 438,
+                "storage_mb": 380,
+                "timestamp": "2026-01-31T15:07:35.721901"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f09",
+                "api_calls": 178,
+                "storage_mb": 1165,
+                "timestamp": "2026-01-30T15:07:35.721911"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f0a",
+                "api_calls": 331,
+                "storage_mb": 539,
+                "timestamp": "2026-01-31T15:07:35.721922"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71f12",
+        "email": "user13@example.com",
+        "role": "user",
+        "subscription_tier": "free",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71f0c",
+                "api_calls": 136,
+                "storage_mb": 171,
+                "timestamp": "2026-01-30T15:07:35.721944"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f0d",
+                "api_calls": 231,
+                "storage_mb": 767,
+                "timestamp": "2026-02-08T15:07:35.721955"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f0e",
+                "api_calls": 485,
+                "storage_mb": 696,
+                "timestamp": "2026-02-03T15:07:35.721970"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f0f",
+                "api_calls": 587,
+                "storage_mb": 375,
+                "timestamp": "2026-02-07T15:07:35.721980"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f10",
+                "api_calls": 183,
+                "storage_mb": 658,
+                "timestamp": "2026-02-03T15:07:35.721991"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f11",
+                "api_calls": 436,
+                "storage_mb": 1147,
+                "timestamp": "2026-02-03T15:07:35.722001"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71f18",
+        "email": "user14@example.com",
+        "role": "user",
+        "subscription_tier": "free",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71f13",
+                "api_calls": 228,
+                "storage_mb": 556,
+                "timestamp": "2026-02-03T15:07:35.722023"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f14",
+                "api_calls": 485,
+                "storage_mb": 1090,
+                "timestamp": "2026-02-14T15:07:35.722035"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f15",
+                "api_calls": 567,
+                "storage_mb": 192,
+                "timestamp": "2026-02-02T15:07:35.722046"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f16",
+                "api_calls": 429,
+                "storage_mb": 1146,
+                "timestamp": "2026-02-03T15:07:35.722061"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f17",
+                "api_calls": 521,
+                "storage_mb": 257,
+                "timestamp": "2026-01-26T15:07:35.722072"
+            }
+        ]
+    },
+    {
+        "_id": "699b1bb7f1d564a7f0b71f1d",
+        "email": "user15@example.com",
+        "role": "user",
+        "subscription_tier": "free",
+        "account_status": "active",
+        "usage_logs": [
+            {
+                "_id": "699b1bb7f1d564a7f0b71f19",
+                "api_calls": 430,
+                "storage_mb": 595,
+                "timestamp": "2026-01-31T15:07:35.722093"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f1a",
+                "api_calls": 216,
+                "storage_mb": 278,
+                "timestamp": "2026-02-08T15:07:35.722104"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f1b",
+                "api_calls": 115,
+                "storage_mb": 622,
+                "timestamp": "2026-02-20T15:07:35.722115"
+            },
+            {
+                "_id": "699b1bb7f1d564a7f0b71f1c",
+                "api_calls": 312,
+                "storage_mb": 548,
+                "timestamp": "2026-02-16T15:07:35.722125"
+            }
+        ]
+    }
+]
