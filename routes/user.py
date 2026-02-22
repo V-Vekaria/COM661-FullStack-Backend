@@ -114,3 +114,68 @@ def delete_user(id):
         return jsonify({"error": "User not found"}), 404
 
     return jsonify({"message": "User deleted"}), 200
+
+# --------------------------------------------------
+# ADD USAGE LOG TO USER (Sub-document)
+# --------------------------------------------------
+@user_bp.route("/users/<string:id>/usage", methods=["POST"])
+def add_usage_log(id):
+
+    data = request.json
+
+    if not data:
+        return jsonify({"error": "No JSON body provided"}), 400
+
+    if "api_calls" not in data or "storage_mb" not in data:
+        return jsonify({"error": "api_calls and storage_mb are required"}), 400
+
+    # Create usage log entry
+    usage_log = {
+        "_id": str(__import__("bson").ObjectId()),
+        "api_calls": data["api_calls"],
+        "storage_mb": data["storage_mb"],
+        "timestamp": __import__("datetime").datetime.utcnow().isoformat()
+    }
+
+    result = users_collection.update_one(
+        {"_id": id},
+        {"$push": {"usage_logs": usage_log}}
+    )
+
+    if result.matched_count == 0:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify({
+        "message": "Usage log added",
+        "usage_log": usage_log
+    }), 201
+
+# --------------------------------------------------
+# GET ALL USAGE LOGS FOR A USER
+# --------------------------------------------------
+@user_bp.route("/users/<string:id>/usage", methods=["GET"])
+def get_usage_logs(id):
+
+    user = users_collection.find_one({"_id": id})
+
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify(user.get("usage_logs", [])), 200
+
+# --------------------------------------------------
+# DELETE SPECIFIC USAGE LOG
+# --------------------------------------------------
+@user_bp.route("/users/<string:user_id>/usage/<string:log_id>", methods=["DELETE"])
+def delete_usage_log(user_id, log_id):
+
+    result = users_collection.update_one(
+        {"_id": user_id},
+        {"$pull": {"usage_logs": {"_id": log_id}}}
+    )
+
+    if result.matched_count == 0:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify({"message": "Usage log deleted"}), 200
+
