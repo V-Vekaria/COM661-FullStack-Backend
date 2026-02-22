@@ -1,14 +1,19 @@
 from flask import Blueprint, request, jsonify
 from config import db
-
-# --------------------------------------------------
-# Users Blueprint
-# Handles full CRUD operations for SaaS users
-# Uses string-based _id values (not MongoDB ObjectId)
-# --------------------------------------------------
+from bson import ObjectId
+from datetime import datetime
 
 user_bp = Blueprint("users", __name__)
 users_collection = db["users"]
+
+
+# --------------------------------------------------
+# Helper: Build Safe ID Query (Supports String + ObjectId)
+# --------------------------------------------------
+def build_id_query(id):
+    if ObjectId.is_valid(id):
+        return {"_id": ObjectId(id)}
+    return {"_id": id}
 
 
 # --------------------------------------------------
@@ -16,6 +21,7 @@ users_collection = db["users"]
 # --------------------------------------------------
 @user_bp.route("/users", methods=["POST"])
 def create_user():
+
     data = request.json
 
     if not data or "email" not in data:
@@ -38,34 +44,50 @@ def create_user():
 
 
 # --------------------------------------------------
-# GET ALL USERS (Pagination Supported)
+# GET ALL USERS (Pagination)
 # --------------------------------------------------
 @user_bp.route("/users", methods=["GET"])
 def get_users():
 
     page_num = int(request.args.get("pn", 1))
     page_size = int(request.args.get("ps", 5))
-
     page_start = (page_num - 1) * page_size
 
     users_list = []
 
     for user in users_collection.find().skip(page_start).limit(page_size):
+
+        # Convert ObjectId if needed
+        if isinstance(user["_id"], ObjectId):
+            user["_id"] = str(user["_id"])
+
+        for log in user.get("usage_logs", []):
+            if isinstance(log["_id"], ObjectId):
+                log["_id"] = str(log["_id"])
+
         users_list.append(user)
 
     return jsonify(users_list), 200
 
 
 # --------------------------------------------------
-# GET ONE USER BY ID (String-based ID)
+# GET ONE USER
 # --------------------------------------------------
 @user_bp.route("/users/<string:id>", methods=["GET"])
 def get_one_user(id):
 
-    user = users_collection.find_one({"_id": id})
+    query = build_id_query(id)
+    user = users_collection.find_one(query)
 
     if user is None:
         return jsonify({"error": "User not found"}), 404
+
+    if isinstance(user["_id"], ObjectId):
+        user["_id"] = str(user["_id"])
+
+    for log in user.get("usage_logs", []):
+        if isinstance(log["_id"], ObjectId):
+            log["_id"] = str(log["_id"])
 
     return jsonify(user), 200
 
@@ -83,7 +105,6 @@ def update_user(id):
 
     update_fields = {}
 
-    # Only allow controlled fields to be updated
     for field in ["email", "subscription_tier", "account_status"]:
         if field in data:
             update_fields[field] = data[field]
@@ -91,8 +112,10 @@ def update_user(id):
     if not update_fields:
         return jsonify({"error": "No valid fields provided"}), 400
 
+    query = build_id_query(id)
+
     result = users_collection.update_one(
-        {"_id": id},
+        query,
         {"$set": update_fields}
     )
 
@@ -108,15 +131,18 @@ def update_user(id):
 @user_bp.route("/users/<string:id>", methods=["DELETE"])
 def delete_user(id):
 
-    result = users_collection.delete_one({"_id": id})
+    query = build_id_query(id)
+
+    result = users_collection.delete_one(query)
 
     if result.deleted_count == 0:
         return jsonify({"error": "User not found"}), 404
 
     return jsonify({"message": "User deleted"}), 200
 
+
 # --------------------------------------------------
-# ADD USAGE LOG TO USER (Sub-document)
+# ADD USAGE LOG
 # --------------------------------------------------
 @user_bp.route("/users/<string:id>/usage", methods=["POST"])
 def add_usage_log(id):
@@ -129,49 +155,67 @@ def add_usage_log(id):
     if "api_calls" not in data or "storage_mb" not in data:
         return jsonify({"error": "api_calls and storage_mb are required"}), 400
 
-    # Create usage log entry
     usage_log = {
-        "_id": str(__import__("bson").ObjectId()),
+        "_id": ObjectId(),
         "api_calls": data["api_calls"],
         "storage_mb": data["storage_mb"],
-        "timestamp": __import__("datetime").datetime.utcnow().isoformat()
+        "timestamp": datetime.utcnow().isoformat()
     }
 
+    query = build_id_query(id)
+
     result = users_collection.update_one(
-        {"_id": id},
+        query,
         {"$push": {"usage_logs": usage_log}}
     )
 
     if result.matched_count == 0:
         return jsonify({"error": "User not found"}), 404
 
+    usage_log["_id"] = str(usage_log["_id"])
+
     return jsonify({
         "message": "Usage log added",
         "usage_log": usage_log
     }), 201
 
+
 # --------------------------------------------------
-# GET ALL USAGE LOGS FOR A USER
+# GET USAGE LOGS
 # --------------------------------------------------
 @user_bp.route("/users/<string:id>/usage", methods=["GET"])
 def get_usage_logs(id):
 
-    user = users_collection.find_one({"_id": id})
+    query = build_id_query(id)
+    user = users_collection.find_one(query)
 
     if user is None:
         return jsonify({"error": "User not found"}), 404
 
-    return jsonify(user.get("usage_logs", [])), 200
+    logs = user.get("usage_logs", [])
+
+    for log in logs:
+        if isinstance(log["_id"], ObjectId):
+            log["_id"] = str(log["_id"])
+
+    return jsonify(logs), 200
+
 
 # --------------------------------------------------
-# DELETE SPECIFIC USAGE LOG
+# DELETE USAGE LOG
 # --------------------------------------------------
 @user_bp.route("/users/<string:user_id>/usage/<string:log_id>", methods=["DELETE"])
 def delete_usage_log(user_id, log_id):
 
+    user_query = build_id_query(user_id)
+
+    log_query = log_id
+    if ObjectId.is_valid(log_id):
+        log_query = ObjectId(log_id)
+
     result = users_collection.update_one(
-        {"_id": user_id},
-        {"$pull": {"usage_logs": {"_id": log_id}}}
+        user_query,
+        {"$pull": {"usage_logs": {"_id": log_query}}}
     )
 
     if result.matched_count == 0:
@@ -179,3 +223,59 @@ def delete_usage_log(user_id, log_id):
 
     return jsonify({"message": "Usage log deleted"}), 200
 
+
+# --------------------------------------------------
+# ANALYTICS: Average API Calls Per User
+# --------------------------------------------------
+@user_bp.route("/analytics/avg-api-calls", methods=["GET"])
+def avg_api_calls_per_user():
+
+    pipeline = [
+        {"$unwind": "$usage_logs"},
+        {
+            "$group": {
+                "_id": "$_id",
+                "email": {"$first": "$email"},
+                "subscription_tier": {"$first": "$subscription_tier"},
+                "average_api_calls": {"$avg": "$usage_logs.api_calls"}
+            }
+        },
+        {"$sort": {"average_api_calls": -1}}
+    ]
+
+    results = list(users_collection.aggregate(pipeline))
+
+    for r in results:
+        if isinstance(r["_id"], ObjectId):
+            r["_id"] = str(r["_id"])
+
+    return jsonify(results), 200
+
+
+# --------------------------------------------------
+# ANALYTICS: High Usage Anomalies
+# --------------------------------------------------
+@user_bp.route("/analytics/high-usage-anomalies", methods=["GET"])
+def detect_high_usage_anomalies():
+
+    pipeline = [
+        {"$unwind": "$usage_logs"},
+        {"$match": {"usage_logs.api_calls": {"$gt": 50000}}},
+        {
+            "$project": {
+                "_id": 1,
+                "email": 1,
+                "subscription_tier": 1,
+                "api_calls": "$usage_logs.api_calls",
+                "timestamp": "$usage_logs.timestamp"
+            }
+        }
+    ]
+
+    results = list(users_collection.aggregate(pipeline))
+
+    for r in results:
+        if isinstance(r["_id"], ObjectId):
+            r["_id"] = str(r["_id"])
+
+    return jsonify(results), 200
