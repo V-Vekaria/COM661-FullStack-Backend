@@ -1,470 +1,962 @@
 [
     {
-        "_id": "69aece571441acf9a9a2f85f",
-        "email": "user1@example.com",
-        "role": "user",
-        "subscription_tier": "pro",
-        "account_status": "inactive",
+        "_id": "69aed200974311ce0ace6971",
+        "profile": {
+            "email": "user1@example.com",
+            "role": "admin",
+            "company": "Company-1",
+            "created_at": "2025-12-15T13:58:24.829930"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "inactive"
+        },
         "usage_logs": [
             {
-                "_id": "69aece571441acf9a9a2f860",
-                "timestamp": "2026-02-23T13:42:47.806085",
+                "_id": "69aed200974311ce0ace6972",
+                "timestamp": "2026-02-19T13:58:24.830063",
                 "metrics": {
-                    "api_calls": 3987,
-                    "storage_mb": 467
-                },
-                "request": {
-                    "endpoint": "/api/download",
-                    "region": "ap-south"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f861",
-                "timestamp": "2026-02-19T13:42:47.806134",
-                "metrics": {
-                    "api_calls": 725,
-                    "storage_mb": 2763
-                },
-                "request": {
-                    "endpoint": "/api/download",
-                    "region": "eu-west"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f862",
-                "timestamp": "2026-01-24T13:42:47.806187",
-                "metrics": {
-                    "api_calls": 699,
-                    "storage_mb": 1305
-                },
-                "request": {
-                    "endpoint": "/api/upload",
-                    "region": "ap-south"
-                }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f863",
-        "email": "user2@example.com",
-        "role": "admin",
-        "subscription_tier": "pro",
-        "account_status": "active",
-        "usage_logs": [
-            {
-                "_id": "69aece571441acf9a9a2f864",
-                "timestamp": "2026-02-03T13:42:47.806211",
-                "metrics": {
-                    "api_calls": 3859,
-                    "storage_mb": 966
+                    "api_calls": 2024,
+                    "storage_mb": 2891
                 },
                 "request": {
                     "endpoint": "/api/analytics",
-                    "region": "ap-south"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f865",
-                "timestamp": "2026-01-08T13:42:47.806224",
-                "metrics": {
-                    "api_calls": 3878,
-                    "storage_mb": 309
-                },
-                "request": {
-                    "endpoint": "/api/upload",
-                    "region": "eu-west"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f866",
-                "timestamp": "2026-01-30T13:42:47.806234",
-                "metrics": {
-                    "api_calls": 3264,
-                    "storage_mb": 3986
-                },
-                "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "eu-west"
-                }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f867",
-        "email": "user3@example.com",
-        "role": "user",
-        "subscription_tier": "pro",
-        "account_status": "active",
-        "usage_logs": [
-            {
-                "_id": "69aece571441acf9a9a2f868",
-                "timestamp": "2026-02-06T13:42:47.806249",
-                "metrics": {
-                    "api_calls": 4264,
-                    "storage_mb": 4825
-                },
-                "request": {
-                    "endpoint": "/api/upload",
-                    "region": "ap-south"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f869",
-                "timestamp": "2026-03-08T13:42:47.806259",
-                "metrics": {
-                    "api_calls": 2751,
-                    "storage_mb": 845
-                },
-                "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "eu-west"
-                }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f86a",
-        "email": "user4@example.com",
-        "role": "admin",
-        "subscription_tier": "free",
-        "account_status": "active",
-        "usage_logs": [
-            {
-                "_id": "69aece571441acf9a9a2f86b",
-                "timestamp": "2026-02-06T13:42:47.806275",
-                "metrics": {
-                    "api_calls": 2986,
-                    "storage_mb": 2949
-                },
-                "request": {
-                    "endpoint": "/api/upload",
-                    "region": "ap-south"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f86c",
-                "timestamp": "2026-02-17T13:42:47.806283",
-                "metrics": {
-                    "api_calls": 2876,
-                    "storage_mb": 1262
-                },
-                "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "eu-west"
-                }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f86d",
-        "email": "user5@example.com",
-        "role": "admin",
-        "subscription_tier": "pro",
-        "account_status": "inactive",
-        "usage_logs": [
-            {
-                "_id": "69aece571441acf9a9a2f86e",
-                "timestamp": "2026-02-11T13:42:47.806297",
-                "metrics": {
-                    "api_calls": 3263,
-                    "storage_mb": 3483
-                },
-                "request": {
-                    "endpoint": "/api/download",
-                    "region": "eu-west"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f86f",
-                "timestamp": "2026-01-17T13:42:47.806330",
-                "metrics": {
-                    "api_calls": 291,
-                    "storage_mb": 198
-                },
-                "request": {
-                    "endpoint": "/api/upload",
+                    "method": "GET",
+                    "status_code": 400,
                     "region": "us-east"
                 }
             },
             {
-                "_id": "69aece571441acf9a9a2f870",
-                "timestamp": "2026-01-29T13:42:47.806341",
+                "_id": "69aed200974311ce0ace6973",
+                "timestamp": "2026-01-21T13:58:24.830094",
                 "metrics": {
-                    "api_calls": 3657,
-                    "storage_mb": 2045
+                    "api_calls": 1517,
+                    "storage_mb": 3743
                 },
                 "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "eu-west"
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 400,
+                    "region": "us-east"
                 }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f871",
-        "email": "user6@example.com",
-        "role": "admin",
-        "subscription_tier": "enterprise",
-        "account_status": "active",
-        "usage_logs": [
+            },
             {
-                "_id": "69aece571441acf9a9a2f872",
-                "timestamp": "2026-01-12T13:42:47.806362",
+                "_id": "69aed200974311ce0ace6974",
+                "timestamp": "2026-01-16T13:58:24.830115",
                 "metrics": {
-                    "api_calls": 2026,
-                    "storage_mb": 2972
+                    "api_calls": 2265,
+                    "storage_mb": 957
                 },
                 "request": {
-                    "endpoint": "/api/upload",
+                    "endpoint": "/api/download",
+                    "method": "PUT",
+                    "status_code": 200,
                     "region": "eu-west"
                 }
             },
             {
-                "_id": "69aece571441acf9a9a2f873",
-                "timestamp": "2026-02-16T13:42:47.806372",
+                "_id": "69aed200974311ce0ace6975",
+                "timestamp": "2026-01-24T13:58:24.830132",
                 "metrics": {
-                    "api_calls": 2277,
+                    "api_calls": 4378,
+                    "storage_mb": 2638
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "POST",
+                    "status_code": 401,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace6976",
+                "timestamp": "2026-02-11T13:58:24.830148",
+                "metrics": {
+                    "api_calls": 1164,
+                    "storage_mb": 4142
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "PUT",
+                    "status_code": 200,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace6977",
+                "timestamp": "2026-01-21T13:58:24.830162",
+                "metrics": {
+                    "api_calls": 1749,
+                    "storage_mb": 1573
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "GET",
+                    "status_code": 400,
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace6978",
+        "profile": {
+            "email": "user2@example.com",
+            "role": "user",
+            "company": "Company-2",
+            "created_at": "2025-12-04T13:58:24.830235"
+        },
+        "subscription": {
+            "tier": "enterprise",
+            "status": "inactive"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace6979",
+                "timestamp": "2026-03-07T13:58:24.830304",
+                "metrics": {
+                    "api_calls": 2433,
+                    "storage_mb": 2685
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "POST",
+                    "status_code": 401,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace697a",
+                "timestamp": "2026-02-27T13:58:24.830347",
+                "metrics": {
+                    "api_calls": 1712,
+                    "storage_mb": 3312
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "GET",
+                    "status_code": 201,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace697b",
+                "timestamp": "2026-02-07T13:58:24.830388",
+                "metrics": {
+                    "api_calls": 852,
+                    "storage_mb": 996
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "GET",
+                    "status_code": 500,
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace697c",
+        "profile": {
+            "email": "user3@example.com",
+            "role": "user",
+            "company": "Company-3",
+            "created_at": "2025-11-14T13:58:24.830424"
+        },
+        "subscription": {
+            "tier": "enterprise",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace697d",
+                "timestamp": "2026-02-22T13:58:24.830467",
+                "metrics": {
+                    "api_calls": 1088,
+                    "storage_mb": 294
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "PUT",
+                    "status_code": 500,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace697e",
+                "timestamp": "2026-01-09T13:58:24.830494",
+                "metrics": {
+                    "api_calls": 2765,
+                    "storage_mb": 4640
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "GET",
+                    "status_code": 201,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace697f",
+                "timestamp": "2026-02-01T13:58:24.830519",
+                "metrics": {
+                    "api_calls": 842,
+                    "storage_mb": 3068
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "PUT",
+                    "status_code": 500,
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace6980",
+        "profile": {
+            "email": "user4@example.com",
+            "role": "user",
+            "company": "Company-4",
+            "created_at": "2025-11-17T13:58:24.830540"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "inactive"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace6981",
+                "timestamp": "2026-01-15T13:58:24.830584",
+                "metrics": {
+                    "api_calls": 830,
+                    "storage_mb": 2809
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "POST",
+                    "status_code": 200,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace6982",
+                "timestamp": "2026-01-24T13:58:24.830617",
+                "metrics": {
+                    "api_calls": 230,
                     "storage_mb": 4853
                 },
                 "request": {
-                    "endpoint": "/api/download",
-                    "region": "ap-south"
+                    "endpoint": "/api/analytics",
+                    "method": "PUT",
+                    "status_code": 401,
+                    "region": "eu-west"
                 }
             },
             {
-                "_id": "69aece571441acf9a9a2f874",
-                "timestamp": "2026-01-08T13:42:47.806382",
+                "_id": "69aed200974311ce0ace6983",
+                "timestamp": "2026-02-12T13:58:24.830633",
                 "metrics": {
-                    "api_calls": 1406,
-                    "storage_mb": 4332
-                },
-                "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "us-east"
-                }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f875",
-        "email": "user7@example.com",
-        "role": "admin",
-        "subscription_tier": "free",
-        "account_status": "active",
-        "usage_logs": [
-            {
-                "_id": "69aece571441acf9a9a2f876",
-                "timestamp": "2026-01-31T13:42:47.806397",
-                "metrics": {
-                    "api_calls": 4816,
-                    "storage_mb": 4513
-                },
-                "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "us-east"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f877",
-                "timestamp": "2026-02-27T13:42:47.806421",
-                "metrics": {
-                    "api_calls": 3720,
-                    "storage_mb": 4178
+                    "api_calls": 2226,
+                    "storage_mb": 2330
                 },
                 "request": {
                     "endpoint": "/api/upload",
-                    "region": "ap-south"
-                }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f878",
-        "email": "user8@example.com",
-        "role": "admin",
-        "subscription_tier": "free",
-        "account_status": "active",
-        "usage_logs": [
-            {
-                "_id": "69aece571441acf9a9a2f879",
-                "timestamp": "2026-02-16T13:42:47.806456",
-                "metrics": {
-                    "api_calls": 4756,
-                    "storage_mb": 538
-                },
-                "request": {
-                    "endpoint": "/api/upload",
-                    "region": "us-east"
+                    "method": "POST",
+                    "status_code": 400,
+                    "region": "eu-west"
                 }
             },
             {
-                "_id": "69aece571441acf9a9a2f87a",
-                "timestamp": "2026-02-01T13:42:47.806465",
+                "_id": "69aed200974311ce0ace6984",
+                "timestamp": "2026-01-12T13:58:24.830673",
                 "metrics": {
-                    "api_calls": 4848,
-                    "storage_mb": 3928
-                },
-                "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "ap-south"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f87b",
-                "timestamp": "2026-01-09T13:42:47.806474",
-                "metrics": {
-                    "api_calls": 3712,
-                    "storage_mb": 3697
-                },
-                "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "ap-south"
-                }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f87c",
-        "email": "user9@example.com",
-        "role": "admin",
-        "subscription_tier": "free",
-        "account_status": "inactive",
-        "usage_logs": [
-            {
-                "_id": "69aece571441acf9a9a2f87d",
-                "timestamp": "2026-01-31T13:42:47.806490",
-                "metrics": {
-                    "api_calls": 313,
-                    "storage_mb": 4890
-                },
-                "request": {
-                    "endpoint": "/api/upload",
-                    "region": "us-east"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f87e",
-                "timestamp": "2026-01-27T13:42:47.806507",
-                "metrics": {
-                    "api_calls": 3266,
-                    "storage_mb": 2324
+                    "api_calls": 2759,
+                    "storage_mb": 399
                 },
                 "request": {
                     "endpoint": "/api/download",
-                    "region": "ap-south"
+                    "method": "POST",
+                    "status_code": 200,
+                    "region": "us-east"
                 }
             }
-        ]
+        ],
+        "api_keys": [],
+        "alerts": []
     },
     {
-        "_id": "69aece571441acf9a9a2f87f",
-        "email": "user10@example.com",
-        "role": "admin",
-        "subscription_tier": "free",
-        "account_status": "active",
+        "_id": "69aed200974311ce0ace6985",
+        "profile": {
+            "email": "user5@example.com",
+            "role": "user",
+            "company": "Company-5",
+            "created_at": "2026-01-27T13:58:24.830709"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "active"
+        },
         "usage_logs": [
             {
-                "_id": "69aece571441acf9a9a2f880",
-                "timestamp": "2026-01-12T13:42:47.806526",
+                "_id": "69aed200974311ce0ace6986",
+                "timestamp": "2026-02-05T13:58:24.830736",
                 "metrics": {
-                    "api_calls": 3602,
-                    "storage_mb": 2849
+                    "api_calls": 1928,
+                    "storage_mb": 2110
                 },
                 "request": {
-                    "endpoint": "/api/analytics",
-                    "region": "ap-south"
-                }
-            },
-            {
-                "_id": "69aece571441acf9a9a2f881",
-                "timestamp": "2026-01-31T13:42:47.806536",
-                "metrics": {
-                    "api_calls": 898,
-                    "storage_mb": 3600
-                },
-                "request": {
-                    "endpoint": "/api/upload",
+                    "endpoint": "/api/download",
+                    "method": "PUT",
+                    "status_code": 401,
                     "region": "us-east"
                 }
             },
             {
-                "_id": "69aece571441acf9a9a2f882",
-                "timestamp": "2026-03-07T13:42:47.806545",
+                "_id": "69aed200974311ce0ace6987",
+                "timestamp": "2026-01-31T13:58:24.830751",
                 "metrics": {
-                    "api_calls": 3696,
-                    "storage_mb": 4738
+                    "api_calls": 145,
+                    "storage_mb": 3542
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 500,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace6988",
+                "timestamp": "2026-02-01T13:58:24.830773",
+                "metrics": {
+                    "api_calls": 242,
+                    "storage_mb": 470
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "GET",
+                    "status_code": 400,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace6989",
+                "timestamp": "2026-03-02T13:58:24.830790",
+                "metrics": {
+                    "api_calls": 1020,
+                    "storage_mb": 1463
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 400,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace698a",
+                "timestamp": "2026-02-03T13:58:24.830804",
+                "metrics": {
+                    "api_calls": 3113,
+                    "storage_mb": 3508
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "POST",
+                    "status_code": 500,
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace698b",
+        "profile": {
+            "email": "user6@example.com",
+            "role": "user",
+            "company": "Company-6",
+            "created_at": "2025-12-02T13:58:24.830816"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace698c",
+                "timestamp": "2026-01-29T13:58:24.830833",
+                "metrics": {
+                    "api_calls": 3776,
+                    "storage_mb": 493
                 },
                 "request": {
                     "endpoint": "/api/analytics",
+                    "method": "PUT",
+                    "status_code": 200,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace698d",
+                "timestamp": "2026-03-01T13:58:24.830847",
+                "metrics": {
+                    "api_calls": 1278,
+                    "storage_mb": 4825
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 200,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace698e",
+                "timestamp": "2026-01-16T13:58:24.830859",
+                "metrics": {
+                    "api_calls": 1691,
+                    "storage_mb": 1432
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "POST",
+                    "status_code": 400,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace698f",
+                "timestamp": "2026-02-27T13:58:24.830876",
+                "metrics": {
+                    "api_calls": 2087,
+                    "storage_mb": 1026
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "PUT",
+                    "status_code": 500,
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace6990",
+        "profile": {
+            "email": "user7@example.com",
+            "role": "admin",
+            "company": "Company-7",
+            "created_at": "2026-02-19T13:58:24.830905"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace6991",
+                "timestamp": "2026-02-19T13:58:24.830920",
+                "metrics": {
+                    "api_calls": 4919,
+                    "storage_mb": 3115
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "POST",
+                    "status_code": 401,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace6992",
+                "timestamp": "2026-02-22T13:58:24.830956",
+                "metrics": {
+                    "api_calls": 1241,
+                    "storage_mb": 2277
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "PUT",
+                    "status_code": 200,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace6993",
+                "timestamp": "2026-03-06T13:58:24.830969",
+                "metrics": {
+                    "api_calls": 307,
+                    "storage_mb": 2098
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 401,
                     "region": "eu-west"
                 }
             }
-        ]
+        ],
+        "api_keys": [],
+        "alerts": []
     },
     {
-        "_id": "69aece571441acf9a9a2f883",
-        "email": "user11@example.com",
-        "role": "user",
-        "subscription_tier": "pro",
-        "account_status": "active",
+        "_id": "69aed200974311ce0ace6994",
+        "profile": {
+            "email": "user8@example.com",
+            "role": "user",
+            "company": "Company-8",
+            "created_at": "2026-01-21T13:58:24.830984"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "active"
+        },
         "usage_logs": [
             {
-                "_id": "69aece571441acf9a9a2f884",
-                "timestamp": "2026-01-22T13:42:47.806575",
+                "_id": "69aed200974311ce0ace6995",
+                "timestamp": "2026-01-14T13:58:24.831000",
                 "metrics": {
-                    "api_calls": 4559,
-                    "storage_mb": 4117
+                    "api_calls": 2415,
+                    "storage_mb": 4437
                 },
                 "request": {
-                    "endpoint": "/api/download",
-                    "region": "ap-south"
+                    "endpoint": "/api/upload",
+                    "method": "GET",
+                    "status_code": 400,
+                    "region": "eu-west"
                 }
             },
             {
-                "_id": "69aece571441acf9a9a2f885",
-                "timestamp": "2026-02-22T13:42:47.806584",
+                "_id": "69aed200974311ce0ace6996",
+                "timestamp": "2026-03-07T13:58:24.831013",
                 "metrics": {
-                    "api_calls": 1150,
-                    "storage_mb": 2834
+                    "api_calls": 4271,
+                    "storage_mb": 244
                 },
                 "request": {
-                    "endpoint": "/api/download",
+                    "endpoint": "/api/upload",
+                    "method": "POST",
+                    "status_code": 400,
                     "region": "us-east"
                 }
-            }
-        ]
-    },
-    {
-        "_id": "69aece571441acf9a9a2f886",
-        "email": "user12@example.com",
-        "role": "user",
-        "subscription_tier": "enterprise",
-        "account_status": "active",
-        "usage_logs": [
+            },
             {
-                "_id": "69aece571441acf9a9a2f887",
-                "timestamp": "2026-02-26T13:42:47.806597",
+                "_id": "69aed200974311ce0ace6997",
+                "timestamp": "2026-03-01T13:58:24.831026",
                 "metrics": {
-                    "api_calls": 1375,
-                    "storage_mb": 4033
+                    "api_calls": 585,
+                    "storage_mb": 4186
                 },
                 "request": {
                     "endpoint": "/api/download",
+                    "method": "PUT",
+                    "status_code": 200,
                     "region": "ap-south"
                 }
             },
             {
-                "_id": "69aece571441acf9a9a2f888",
-                "timestamp": "2026-01-24T13:42:47.806605",
+                "_id": "69aed200974311ce0ace6998",
+                "timestamp": "2026-01-25T13:58:24.831056",
                 "metrics": {
-                    "api_calls": 2467,
-                    "storage_mb": 3867
+                    "api_calls": 711,
+                    "storage_mb": 3716
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 400,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace6999",
+                "timestamp": "2026-02-07T13:58:24.831067",
+                "metrics": {
+                    "api_calls": 814,
+                    "storage_mb": 1273
                 },
                 "request": {
                     "endpoint": "/api/analytics",
+                    "method": "PUT",
+                    "status_code": 201,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace699a",
+                "timestamp": "2026-02-23T13:58:24.831079",
+                "metrics": {
+                    "api_calls": 1860,
+                    "storage_mb": 379
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 201,
+                    "region": "eu-west"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace699b",
+        "profile": {
+            "email": "user9@example.com",
+            "role": "admin",
+            "company": "Company-9",
+            "created_at": "2025-11-27T13:58:24.831089"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "inactive"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace699c",
+                "timestamp": "2026-02-08T13:58:24.831128",
+                "metrics": {
+                    "api_calls": 1394,
+                    "storage_mb": 2757
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 500,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace699d",
+                "timestamp": "2026-02-25T13:58:24.831144",
+                "metrics": {
+                    "api_calls": 1376,
+                    "storage_mb": 3421
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "PUT",
+                    "status_code": 200,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace699e",
+                "timestamp": "2026-02-23T13:58:24.831158",
+                "metrics": {
+                    "api_calls": 3994,
+                    "storage_mb": 3684
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 401,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace699f",
+                "timestamp": "2026-01-30T13:58:24.831175",
+                "metrics": {
+                    "api_calls": 4097,
+                    "storage_mb": 4879
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "POST",
+                    "status_code": 400,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69a0",
+                "timestamp": "2026-02-05T13:58:24.831188",
+                "metrics": {
+                    "api_calls": 4269,
+                    "storage_mb": 3689
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "GET",
+                    "status_code": 401,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69a1",
+                "timestamp": "2026-03-05T13:58:24.831208",
+                "metrics": {
+                    "api_calls": 3000,
+                    "storage_mb": 466
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "GET",
+                    "status_code": 201,
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace69a2",
+        "profile": {
+            "email": "user10@example.com",
+            "role": "admin",
+            "company": "Company-10",
+            "created_at": "2026-02-18T13:58:24.831220"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace69a3",
+                "timestamp": "2026-01-17T13:58:24.831236",
+                "metrics": {
+                    "api_calls": 534,
+                    "storage_mb": 1474
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "GET",
+                    "status_code": 201,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69a4",
+                "timestamp": "2026-02-10T13:58:24.831249",
+                "metrics": {
+                    "api_calls": 2002,
+                    "storage_mb": 2394
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "POST",
+                    "status_code": 500,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69a5",
+                "timestamp": "2026-02-20T13:58:24.831262",
+                "metrics": {
+                    "api_calls": 3504,
+                    "storage_mb": 4269
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "POST",
+                    "status_code": 400,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69a6",
+                "timestamp": "2026-01-16T13:58:24.831275",
+                "metrics": {
+                    "api_calls": 3241,
+                    "storage_mb": 4942
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "POST",
+                    "status_code": 500,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69a7",
+                "timestamp": "2026-01-30T13:58:24.831289",
+                "metrics": {
+                    "api_calls": 4614,
+                    "storage_mb": 948
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "PUT",
+                    "status_code": 200,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69a8",
+                "timestamp": "2026-01-31T13:58:24.831302",
+                "metrics": {
+                    "api_calls": 3593,
+                    "storage_mb": 2280
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "POST",
+                    "status_code": 401,
                     "region": "us-east"
                 }
             }
-        ]
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace69a9",
+        "profile": {
+            "email": "user11@example.com",
+            "role": "user",
+            "company": "Company-11",
+            "created_at": "2026-02-27T13:58:24.831312"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace69aa",
+                "timestamp": "2026-02-23T13:58:24.831333",
+                "metrics": {
+                    "api_calls": 813,
+                    "storage_mb": 4489
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "method": "POST",
+                    "status_code": 500,
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69ab",
+                "timestamp": "2026-02-07T13:58:24.831346",
+                "metrics": {
+                    "api_calls": 125,
+                    "storage_mb": 3758
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "POST",
+                    "status_code": 500,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69ac",
+                "timestamp": "2026-02-09T13:58:24.831359",
+                "metrics": {
+                    "api_calls": 2202,
+                    "storage_mb": 2975
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "PUT",
+                    "status_code": 400,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69ad",
+                "timestamp": "2026-03-05T13:58:24.831371",
+                "metrics": {
+                    "api_calls": 1554,
+                    "storage_mb": 4706
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "PUT",
+                    "status_code": 500,
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aed200974311ce0ace69ae",
+        "profile": {
+            "email": "user12@example.com",
+            "role": "admin",
+            "company": "Company-12",
+            "created_at": "2026-02-12T13:58:24.831382"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "inactive"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aed200974311ce0ace69af",
+                "timestamp": "2026-02-16T13:58:24.831396",
+                "metrics": {
+                    "api_calls": 500,
+                    "storage_mb": 4447
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "GET",
+                    "status_code": 401,
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69b0",
+                "timestamp": "2026-02-05T13:58:24.831410",
+                "metrics": {
+                    "api_calls": 2544,
+                    "storage_mb": 2302
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "POST",
+                    "status_code": 400,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69b1",
+                "timestamp": "2026-02-27T13:58:24.831426",
+                "metrics": {
+                    "api_calls": 4876,
+                    "storage_mb": 1778
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "method": "GET",
+                    "status_code": 500,
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aed200974311ce0ace69b2",
+                "timestamp": "2026-02-21T13:58:24.831439",
+                "metrics": {
+                    "api_calls": 1868,
+                    "storage_mb": 3005
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "method": "GET",
+                    "status_code": 500,
+                    "region": "eu-west"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
     }
 ]

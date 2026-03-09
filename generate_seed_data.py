@@ -13,8 +13,12 @@ endpoints = [
     "/api/analytics"
 ]
 
+methods = ["GET", "POST", "PUT"]
+status_codes = [200, 201, 400, 401, 500]
+
 roles = ["admin", "user"]
 subscription_tiers = ["free", "pro", "enterprise"]
+
 
 def random_date(days=60):
     return (datetime.utcnow() - timedelta(days=random.randint(1, days))).isoformat()
@@ -22,8 +26,9 @@ def random_date(days=60):
 
 def generate_usage_logs():
     logs = []
-    for _ in range(random.randint(2,3)):
+    for _ in range(random.randint(3, 6)):
         api_calls = random.randint(100, 5000)
+
         log = {
             "_id": str(ObjectId()),
             "timestamp": random_date(),
@@ -31,8 +36,11 @@ def generate_usage_logs():
                 "api_calls": api_calls,
                 "storage_mb": random.randint(100, 5000)
             },
+
             "request": {
                 "endpoint": random.choice(endpoints),
+                "method": random.choice(methods),
+                "status_code": random.choice(status_codes),
                 "region": random.choice(regions)
             }
         }
@@ -41,14 +49,25 @@ def generate_usage_logs():
 
 
 def generate_user(index):
-    return {
-        "_id": str(ObjectId()),
+    profile = {
         "email": f"user{index}@example.com",
         "role": random.choice(roles),
-        "subscription_tier": random.choice(subscription_tiers),
-        "account_status": random.choice(["active", "inactive"]),
-        "usage_logs": generate_usage_logs()
+        "company": f"Company-{index}",
+        "created_at": random_date(120)
     }
+    subscription = {
+        "tier": random.choice(subscription_tiers),
+        "status": random.choice(["active", "inactive"])
+    }
+    user = {
+        "_id": str(ObjectId()),
+        "profile": profile,
+        "subscription": subscription,
+        "usage_logs": generate_usage_logs(),
+        "api_keys": [],
+        "alerts": []
+    }
+    return user
 
 
 def generate_dataset():
