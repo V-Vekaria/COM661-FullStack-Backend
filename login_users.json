@@ -1,77 +1,68 @@
 [
     {
         "email": "alice@cloudmetrics.io",
-        "password": "$2b$12$Gz13qwaEsPTWzU4D99orh.L6MqWChkkb7t.psRxwKRftaMraGBwje",
-        "role": "user"
+        "password": "$2b$12$ZWZabq.tN4IjcXSU9vT1IeY9btM4wM765yVjKfFoxh0.QUcbNHJA2",
+        "role": "user",
+        "user_id": "69af2c5ae3920fe27fcb3f97"
     },
     {
         "email": "bob@cloudmetrics.io",
-        "password": "$2b$12$/X9o8eFiTNyLOjMmQeYtvuu.qCjdOGkzYo3i1s9VSJ3wWF/yw4HFS",
-        "role": "user"
+        "password": "$2b$12$g4PNTWhJDblNsNFnkWFU5eauCguxRaeun.syQyEaGoy26MwPb3UZ.",
+        "role": "admin",
+        "user_id": "69af2c5ae3920fe27fcb3f9c"
     },
     {
         "email": "charlie@cloudmetrics.io",
-        "password": "$2b$12$N03X1HQ2Oi7sbcUzoEmISeeATgTqeZwzA3ZEcvP5tl81Z1QFvTHZ2",
-        "role": "admin"
+        "password": "$2b$12$iXX94tLa3BRgfz/jl15NVe0GUPHwxRjjI.T1EDZrfn5xw3gp1Smwm",
+        "role": "user",
+        "user_id": "69af2c5ae3920fe27fcb3fa2"
     },
     {
         "email": "diana@cloudmetrics.io",
-        "password": "$2b$12$9eu9Nzwz0xO/MoFPKkjnc.niJXkWw1WLBGY9OtbnEA6ZtUnKoJ.9.",
-        "role": "admin"
+        "password": "$2b$12$svtKcD9MAot9KHu9hV0fme/tWdd.3KevuLm63KfYXyiedICJsiY2i",
+        "role": "admin",
+        "user_id": "69af2c5ae3920fe27fcb3fa8"
     },
     {
         "email": "ethan@cloudmetrics.io",
-        "password": "$2b$12$KIWTNjXre7hpmpmMHyOhTuhOdVPtAkWhNISJNAHVwFhhX28Zk6sqK",
-        "role": "admin"
+        "password": "$2b$12$P9Fu51ocEZXkcIEalporduWMuZbQrTLJc5ZRKb03RtnrSqDq1SROW",
+        "role": "admin",
+        "user_id": "69af2c5be3920fe27fcb3fae"
     },
     {
         "email": "fiona@cloudmetrics.io",
-        "password": "$2b$12$it0XRb1h/KyutIU3f7iX8uSTchgKrARTQW7.O163ze.CvCrt.hPHC",
-        "role": "admin"
+        "password": "$2b$12$.lJ1hfxCwQT6N7IGBJwZ.OIaZix2mTAYihpCcN9FrNV1GPa09pcWC",
+        "role": "admin",
+        "user_id": "69af2c5be3920fe27fcb3fb3"
     },
     {
         "email": "george@cloudmetrics.io",
-        "password": "$2b$12$ahiBAiTTfdtJqRlX0x4HWORyJ251SOW9sfZwwNCjFTMvO.mc/q9Y6",
-        "role": "user"
+        "password": "$2b$12$Gj2ykTlQXJb8vXS8oKIPfeb6/sALYkCYHV6C65Q4tW4tVjkwtz1ya",
+        "role": "admin",
+        "user_id": "69af2c5ce3920fe27fcb3fb8"
     },
     {
         "email": "hannah@cloudmetrics.io",
-        "password": "$2b$12$ntAkWlKMXninD9jD1wXwVOHY48FQuXHwKAbKMMbwLbGWAfaMZ3lGC",
-        "role": "user"
+        "password": "$2b$12$nY0Nzq0MnpeN0mEw255x.eJz0EfZxErWKfmzrmNPB9Ug9K0UbP5j2",
+        "role": "user",
+        "user_id": "69af2c5ce3920fe27fcb3fbe"
     },
     {
         "email": "ivan@cloudmetrics.io",
-        "password": "$2b$12$3/qeRb78RP2g2tsXa.oJtO8OvoAZHZ/86dpcphRqw0dzYI71VxrIa",
-        "role": "user"
+        "password": "$2b$12$tC24yY5pi2.MLyQumrbeuOpzZQENCGPWeUW55IOlKXcDEbNvUznwS",
+        "role": "admin",
+        "user_id": "69af2c5ce3920fe27fcb3fc4"
     },
     {
         "email": "julia@cloudmetrics.io",
-        "password": "$2b$12$93be1x/C2ogmudBjPziwKeeLPtrOWmr6v8BWq7J7u9Bv2JeIsnl66",
-        "role": "user"
+        "password": "$2b$12$hD4fSjwPA3j21cSg3T4CP.xJWG9.vAK0rl.28LoPiuCTrxxJkBl7e",
+        "role": "admin",
+        "user_id": "69af2c5de3920fe27fcb3fc8"
     },
     {
         "email": "kevin@cloudmetrics.io",
-        "password": "$2b$12$cyojI3.Hvi4w6/altD5T8Of8DMYpV/srd4PUPInmAMf8a1pb3zbZq",
-        "role": "user"
-    },
-    {
-        "email": "laura@cloudmetrics.io",
-        "password": "$2b$12$uD9WcXNaooxyyKUZpUFCcuyqPtFSGDXONupWnfB9/5dQzEs0mbxrW",
-        "role": "user"
-    },
-    {
-        "email": "michael@cloudmetrics.io",
-        "password": "$2b$12$uDZ9DnfBnvY.XYlOH3jxHePxztxI0sEucXC2Ycl5Te2tO78ojpeoW",
-        "role": "admin"
-    },
-    {
-        "email": "nina@cloudmetrics.io",
-        "password": "$2b$12$/S1NlEnlKVhm4e1PtZrt7e6lailvUbuUPmGs.meivQ/mUXEYQZD3G",
-        "role": "user"
-    },
-    {
-        "email": "oliver@cloudmetrics.io",
-        "password": "$2b$12$SWJNoIfDNoYlAxjQYmC7POmm1uYKx8wIY/h47o2fnnygg/ACw..oa",
-        "role": "admin"
+        "password": "$2b$12$JYcR9vv8M4xCxfKXcIsfruseMsY7too7IoldZqBCXdR.9eJlpwNw2",
+        "role": "admin",
+        "user_id": "69af2c5de3920fe27fcb3fcd"
     }
 ]

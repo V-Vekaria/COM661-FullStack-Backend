@@ -21,6 +21,7 @@ DOMAIN = "cloudmetrics.io"
 def random_date(days=60):
     return (datetime.utcnow() - timedelta(days=random.randint(1, days))).isoformat()
 
+
 def generate_usage_logs():
     logs = []
 
@@ -37,7 +38,6 @@ def generate_usage_logs():
                 "region": random.choice(regions)
             }
         }
-
         logs.append(log)
     return logs
 
@@ -46,23 +46,31 @@ login_users = []
 users = []
 admin_exists = False
 
+
 for i in range(NUM_USERS):
+
     name = names[i]
     email = f"{name}@{DOMAIN}"
+
     role = random.choice(["admin", "user"])
+
     if role == "admin":
         admin_exists = True
+
     password = "password123"
-    hashed_password = bcrypt.hashpw(password.encode("utf-8"),bcrypt.gensalt())
+    hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+
+    user_id = str(ObjectId())
 
     login_user = {
         "email": email,
         "password": hashed_password.decode("utf-8"),
-        "role": role
+        "role": role,
+        "user_id": user_id
     }
 
     user = {
-        "_id": str(ObjectId()),
+        "_id": user_id,
         "profile": {
             "email": email,
             "role": role,
@@ -80,14 +88,17 @@ for i in range(NUM_USERS):
     login_users.append(login_user)
     users.append(user)
 
+
 if not admin_exists:
     login_users[0]["role"] = "admin"
     users[0]["profile"]["role"] = "admin"
+
 
 with open("login_users.json", "w") as f:
     json.dump(login_users, f, indent=4)
 
 with open("users.json", "w") as f:
     json.dump(users, f, indent=4)
+
 
 print("Synthetic datasets generated successfully.")

@@ -24,7 +24,7 @@ def login():
     user = login_collection.find_one({"email": email})
     if not user:
         return jsonify({"error": "Invalid credentials"}), 401
-    if not bcrypt.checkpw(password.encode("utf-8"), user["password"]):
+    if not bcrypt.checkpw(password.encode("utf-8"), user["password"].encode('utf-8')):
         return jsonify({"error": "Invalid credentials"}), 401
 
     token = jwt.encode(
@@ -32,6 +32,7 @@ def login():
             "user_id": str(user["_id"]),
             "email": user["email"],
             "role": user["role"],
+            "user_id": user['user_id'],
             "exp": datetime.utcnow() + timedelta(minutes=30)
         },
         SECRET_KEY,
