@@ -1,0 +1,77 @@
+[
+    {
+        "email": "alice@cloudmetrics.io",
+        "password": "$2b$12$Gz13qwaEsPTWzU4D99orh.L6MqWChkkb7t.psRxwKRftaMraGBwje",
+        "role": "user"
+    },
+    {
+        "email": "bob@cloudmetrics.io",
+        "password": "$2b$12$/X9o8eFiTNyLOjMmQeYtvuu.qCjdOGkzYo3i1s9VSJ3wWF/yw4HFS",
+        "role": "user"
+    },
+    {
+        "email": "charlie@cloudmetrics.io",
+        "password": "$2b$12$N03X1HQ2Oi7sbcUzoEmISeeATgTqeZwzA3ZEcvP5tl81Z1QFvTHZ2",
+        "role": "admin"
+    },
+    {
+        "email": "diana@cloudmetrics.io",
+        "password": "$2b$12$9eu9Nzwz0xO/MoFPKkjnc.niJXkWw1WLBGY9OtbnEA6ZtUnKoJ.9.",
+        "role": "admin"
+    },
+    {
+        "email": "ethan@cloudmetrics.io",
+        "password": "$2b$12$KIWTNjXre7hpmpmMHyOhTuhOdVPtAkWhNISJNAHVwFhhX28Zk6sqK",
+        "role": "admin"
+    },
+    {
+        "email": "fiona@cloudmetrics.io",
+        "password": "$2b$12$it0XRb1h/KyutIU3f7iX8uSTchgKrARTQW7.O163ze.CvCrt.hPHC",
+        "role": "admin"
+    },
+    {
+        "email": "george@cloudmetrics.io",
+        "password": "$2b$12$ahiBAiTTfdtJqRlX0x4HWORyJ251SOW9sfZwwNCjFTMvO.mc/q9Y6",
+        "role": "user"
+    },
+    {
+        "email": "hannah@cloudmetrics.io",
+        "password": "$2b$12$ntAkWlKMXninD9jD1wXwVOHY48FQuXHwKAbKMMbwLbGWAfaMZ3lGC",
+        "role": "user"
+    },
+    {
+        "email": "ivan@cloudmetrics.io",
+        "password": "$2b$12$3/qeRb78RP2g2tsXa.oJtO8OvoAZHZ/86dpcphRqw0dzYI71VxrIa",
+        "role": "user"
+    },
+    {
+        "email": "julia@cloudmetrics.io",
+        "password": "$2b$12$93be1x/C2ogmudBjPziwKeeLPtrOWmr6v8BWq7J7u9Bv2JeIsnl66",
+        "role": "user"
+    },
+    {
+        "email": "kevin@cloudmetrics.io",
+        "password": "$2b$12$cyojI3.Hvi4w6/altD5T8Of8DMYpV/srd4PUPInmAMf8a1pb3zbZq",
+        "role": "user"
+    },
+    {
+        "email": "laura@cloudmetrics.io",
+        "password": "$2b$12$uD9WcXNaooxyyKUZpUFCcuyqPtFSGDXONupWnfB9/5dQzEs0mbxrW",
+        "role": "user"
+    },
+    {
+        "email": "michael@cloudmetrics.io",
+        "password": "$2b$12$uDZ9DnfBnvY.XYlOH3jxHePxztxI0sEucXC2Ycl5Te2tO78ojpeoW",
+        "role": "admin"
+    },
+    {
+        "email": "nina@cloudmetrics.io",
+        "password": "$2b$12$/S1NlEnlKVhm4e1PtZrt7e6lailvUbuUPmGs.meivQ/mUXEYQZD3G",
+        "role": "user"
+    },
+    {
+        "email": "oliver@cloudmetrics.io",
+        "password": "$2b$12$SWJNoIfDNoYlAxjQYmC7POmm1uYKx8wIY/h47o2fnnygg/ACw..oa",
+        "role": "admin"
+    }
+]

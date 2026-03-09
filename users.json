@@ -1,0 +1,926 @@
+[
+    {
+        "_id": "69aee8e73e9d71064650f6f9",
+        "profile": {
+            "email": "alice@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2025-12-16T15:36:07.533365"
+        },
+        "subscription": {
+            "tier": "enterprise",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e73e9d71064650f6fa",
+                "timestamp": "2026-02-15T15:36:07.533424",
+                "metrics": {
+                    "api_calls": 4686,
+                    "storage_mb": 2514
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e73e9d71064650f6fb",
+                "timestamp": "2026-01-11T15:36:07.533439",
+                "metrics": {
+                    "api_calls": 4309,
+                    "storage_mb": 2230
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8e73e9d71064650f6fc",
+                "timestamp": "2026-03-06T15:36:07.533449",
+                "metrics": {
+                    "api_calls": 2695,
+                    "storage_mb": 3573
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e73e9d71064650f6fd",
+        "profile": {
+            "email": "bob@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2026-03-08T15:36:07.747370"
+        },
+        "subscription": {
+            "tier": "enterprise",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e73e9d71064650f6fe",
+                "timestamp": "2026-02-06T15:36:07.747396",
+                "metrics": {
+                    "api_calls": 214,
+                    "storage_mb": 371
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e73e9d71064650f6ff",
+                "timestamp": "2026-02-10T15:36:07.747409",
+                "metrics": {
+                    "api_calls": 2698,
+                    "storage_mb": 498
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8e73e9d71064650f700",
+                "timestamp": "2026-02-21T15:36:07.747419",
+                "metrics": {
+                    "api_calls": 2125,
+                    "storage_mb": 1327
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e73e9d71064650f701",
+                "timestamp": "2026-02-20T15:36:07.747426",
+                "metrics": {
+                    "api_calls": 2992,
+                    "storage_mb": 2362
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8e73e9d71064650f702",
+                "timestamp": "2026-01-15T15:36:07.747433",
+                "metrics": {
+                    "api_calls": 2386,
+                    "storage_mb": 4791
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e73e9d71064650f703",
+        "profile": {
+            "email": "charlie@cloudmetrics.io",
+            "role": "admin",
+            "created_at": "2026-01-19T15:36:07.960402"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e73e9d71064650f704",
+                "timestamp": "2026-01-20T15:36:07.960428",
+                "metrics": {
+                    "api_calls": 2826,
+                    "storage_mb": 2542
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e73e9d71064650f705",
+                "timestamp": "2026-03-03T15:36:07.960439",
+                "metrics": {
+                    "api_calls": 1034,
+                    "storage_mb": 384
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e73e9d71064650f706",
+                "timestamp": "2026-02-13T15:36:07.960446",
+                "metrics": {
+                    "api_calls": 2245,
+                    "storage_mb": 3947
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e83e9d71064650f707",
+        "profile": {
+            "email": "diana@cloudmetrics.io",
+            "role": "admin",
+            "created_at": "2026-03-08T15:36:08.174089"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e83e9d71064650f708",
+                "timestamp": "2026-02-19T15:36:08.174114",
+                "metrics": {
+                    "api_calls": 3292,
+                    "storage_mb": 1132
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f709",
+                "timestamp": "2026-01-21T15:36:08.174125",
+                "metrics": {
+                    "api_calls": 595,
+                    "storage_mb": 3891
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f70a",
+                "timestamp": "2026-02-09T15:36:08.174139",
+                "metrics": {
+                    "api_calls": 1946,
+                    "storage_mb": 3638
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e83e9d71064650f70b",
+        "profile": {
+            "email": "ethan@cloudmetrics.io",
+            "role": "admin",
+            "created_at": "2026-01-28T15:36:08.384832"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e83e9d71064650f70c",
+                "timestamp": "2026-03-08T15:36:08.384865",
+                "metrics": {
+                    "api_calls": 2981,
+                    "storage_mb": 1727
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f70d",
+                "timestamp": "2026-02-22T15:36:08.384898",
+                "metrics": {
+                    "api_calls": 3550,
+                    "storage_mb": 1030
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f70e",
+                "timestamp": "2026-02-22T15:36:08.384910",
+                "metrics": {
+                    "api_calls": 4129,
+                    "storage_mb": 2176
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f70f",
+                "timestamp": "2026-02-15T15:36:08.384917",
+                "metrics": {
+                    "api_calls": 111,
+                    "storage_mb": 3511
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f710",
+                "timestamp": "2026-02-17T15:36:08.384924",
+                "metrics": {
+                    "api_calls": 4123,
+                    "storage_mb": 579
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e83e9d71064650f711",
+        "profile": {
+            "email": "fiona@cloudmetrics.io",
+            "role": "admin",
+            "created_at": "2026-01-01T15:36:08.594601"
+        },
+        "subscription": {
+            "tier": "enterprise",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e83e9d71064650f712",
+                "timestamp": "2026-01-08T15:36:08.594626",
+                "metrics": {
+                    "api_calls": 3298,
+                    "storage_mb": 958
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f713",
+                "timestamp": "2026-02-14T15:36:08.594638",
+                "metrics": {
+                    "api_calls": 3675,
+                    "storage_mb": 2365
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f714",
+                "timestamp": "2026-02-09T15:36:08.594646",
+                "metrics": {
+                    "api_calls": 4073,
+                    "storage_mb": 1086
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e83e9d71064650f715",
+        "profile": {
+            "email": "george@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2025-12-06T15:36:08.804972"
+        },
+        "subscription": {
+            "tier": "enterprise",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e83e9d71064650f716",
+                "timestamp": "2026-02-28T15:36:08.804997",
+                "metrics": {
+                    "api_calls": 1796,
+                    "storage_mb": 4603
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f717",
+                "timestamp": "2026-01-30T15:36:08.805009",
+                "metrics": {
+                    "api_calls": 3762,
+                    "storage_mb": 1214
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f718",
+                "timestamp": "2026-02-17T15:36:08.805022",
+                "metrics": {
+                    "api_calls": 1360,
+                    "storage_mb": 515
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f719",
+                "timestamp": "2026-01-09T15:36:08.805029",
+                "metrics": {
+                    "api_calls": 4423,
+                    "storage_mb": 248
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e83e9d71064650f71a",
+                "timestamp": "2026-01-15T15:36:08.805036",
+                "metrics": {
+                    "api_calls": 3644,
+                    "storage_mb": 1581
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "eu-west"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e93e9d71064650f71b",
+        "profile": {
+            "email": "hannah@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2025-12-23T15:36:09.021417"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e93e9d71064650f71c",
+                "timestamp": "2026-02-14T15:36:09.021441",
+                "metrics": {
+                    "api_calls": 1651,
+                    "storage_mb": 4639
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f71d",
+                "timestamp": "2026-03-06T15:36:09.021452",
+                "metrics": {
+                    "api_calls": 4329,
+                    "storage_mb": 4752
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f71e",
+                "timestamp": "2026-01-30T15:36:09.021461",
+                "metrics": {
+                    "api_calls": 1995,
+                    "storage_mb": 2504
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e93e9d71064650f71f",
+        "profile": {
+            "email": "ivan@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2026-03-05T15:36:09.234478"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e93e9d71064650f720",
+                "timestamp": "2026-01-30T15:36:09.234502",
+                "metrics": {
+                    "api_calls": 2730,
+                    "storage_mb": 2577
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f721",
+                "timestamp": "2026-03-01T15:36:09.234514",
+                "metrics": {
+                    "api_calls": 1814,
+                    "storage_mb": 3528
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f722",
+                "timestamp": "2026-01-23T15:36:09.234521",
+                "metrics": {
+                    "api_calls": 3976,
+                    "storage_mb": 3761
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f723",
+                "timestamp": "2026-01-10T15:36:09.234534",
+                "metrics": {
+                    "api_calls": 4535,
+                    "storage_mb": 362
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f724",
+                "timestamp": "2026-01-18T15:36:09.234542",
+                "metrics": {
+                    "api_calls": 2399,
+                    "storage_mb": 4787
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e93e9d71064650f725",
+        "profile": {
+            "email": "julia@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2026-01-17T15:36:09.442327"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e93e9d71064650f726",
+                "timestamp": "2026-01-09T15:36:09.442357",
+                "metrics": {
+                    "api_calls": 4210,
+                    "storage_mb": 1461
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f727",
+                "timestamp": "2026-01-14T15:36:09.442368",
+                "metrics": {
+                    "api_calls": 3700,
+                    "storage_mb": 1906
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f728",
+                "timestamp": "2026-01-14T15:36:09.442376",
+                "metrics": {
+                    "api_calls": 4096,
+                    "storage_mb": 4711
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e93e9d71064650f729",
+        "profile": {
+            "email": "kevin@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2026-01-07T15:36:09.651978"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e93e9d71064650f72a",
+                "timestamp": "2026-02-18T15:36:09.652002",
+                "metrics": {
+                    "api_calls": 2241,
+                    "storage_mb": 2483
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f72b",
+                "timestamp": "2026-02-09T15:36:09.652018",
+                "metrics": {
+                    "api_calls": 4799,
+                    "storage_mb": 4347
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f72c",
+                "timestamp": "2026-01-19T15:36:09.652026",
+                "metrics": {
+                    "api_calls": 1930,
+                    "storage_mb": 882
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f72d",
+                "timestamp": "2026-02-01T15:36:09.652037",
+                "metrics": {
+                    "api_calls": 3650,
+                    "storage_mb": 3602
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "eu-west"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8e93e9d71064650f72e",
+        "profile": {
+            "email": "laura@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2026-02-18T15:36:09.863809"
+        },
+        "subscription": {
+            "tier": "enterprise",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8e93e9d71064650f72f",
+                "timestamp": "2026-01-16T15:36:09.863835",
+                "metrics": {
+                    "api_calls": 3023,
+                    "storage_mb": 1728
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f730",
+                "timestamp": "2026-02-17T15:36:09.863847",
+                "metrics": {
+                    "api_calls": 698,
+                    "storage_mb": 3199
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f731",
+                "timestamp": "2026-01-20T15:36:09.863854",
+                "metrics": {
+                    "api_calls": 2481,
+                    "storage_mb": 2266
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8e93e9d71064650f732",
+                "timestamp": "2026-03-02T15:36:09.863862",
+                "metrics": {
+                    "api_calls": 4200,
+                    "storage_mb": 3957
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "us-east"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8ea3e9d71064650f733",
+        "profile": {
+            "email": "michael@cloudmetrics.io",
+            "role": "admin",
+            "created_at": "2025-12-23T15:36:10.077972"
+        },
+        "subscription": {
+            "tier": "enterprise",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8ea3e9d71064650f734",
+                "timestamp": "2026-02-24T15:36:10.077998",
+                "metrics": {
+                    "api_calls": 404,
+                    "storage_mb": 952
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8ea3e9d71064650f735",
+                "timestamp": "2026-03-06T15:36:10.078010",
+                "metrics": {
+                    "api_calls": 1143,
+                    "storage_mb": 362
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "us-east"
+                }
+            },
+            {
+                "_id": "69aee8ea3e9d71064650f736",
+                "timestamp": "2026-02-08T15:36:10.078019",
+                "metrics": {
+                    "api_calls": 1670,
+                    "storage_mb": 4896
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "eu-west"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8ea3e9d71064650f737",
+        "profile": {
+            "email": "nina@cloudmetrics.io",
+            "role": "user",
+            "created_at": "2025-11-16T15:36:10.306130"
+        },
+        "subscription": {
+            "tier": "pro",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8ea3e9d71064650f738",
+                "timestamp": "2026-02-20T15:36:10.306155",
+                "metrics": {
+                    "api_calls": 2072,
+                    "storage_mb": 1531
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8ea3e9d71064650f739",
+                "timestamp": "2026-02-22T15:36:10.306167",
+                "metrics": {
+                    "api_calls": 236,
+                    "storage_mb": 2293
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8ea3e9d71064650f73a",
+                "timestamp": "2026-02-15T15:36:10.306175",
+                "metrics": {
+                    "api_calls": 2006,
+                    "storage_mb": 2520
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8ea3e9d71064650f73b",
+                "timestamp": "2026-02-17T15:36:10.306183",
+                "metrics": {
+                    "api_calls": 2080,
+                    "storage_mb": 4923
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    },
+    {
+        "_id": "69aee8ea3e9d71064650f73c",
+        "profile": {
+            "email": "oliver@cloudmetrics.io",
+            "role": "admin",
+            "created_at": "2026-01-20T15:36:10.527388"
+        },
+        "subscription": {
+            "tier": "free",
+            "status": "active"
+        },
+        "usage_logs": [
+            {
+                "_id": "69aee8ea3e9d71064650f73d",
+                "timestamp": "2026-02-21T15:36:10.527418",
+                "metrics": {
+                    "api_calls": 2149,
+                    "storage_mb": 2698
+                },
+                "request": {
+                    "endpoint": "/api/download",
+                    "region": "ap-south"
+                }
+            },
+            {
+                "_id": "69aee8ea3e9d71064650f73e",
+                "timestamp": "2026-01-29T15:36:10.527430",
+                "metrics": {
+                    "api_calls": 1088,
+                    "storage_mb": 3039
+                },
+                "request": {
+                    "endpoint": "/api/upload",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8ea3e9d71064650f73f",
+                "timestamp": "2026-02-04T15:36:10.527439",
+                "metrics": {
+                    "api_calls": 831,
+                    "storage_mb": 4292
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "eu-west"
+                }
+            },
+            {
+                "_id": "69aee8ea3e9d71064650f740",
+                "timestamp": "2026-02-01T15:36:10.527458",
+                "metrics": {
+                    "api_calls": 2141,
+                    "storage_mb": 1091
+                },
+                "request": {
+                    "endpoint": "/api/analytics",
+                    "region": "ap-south"
+                }
+            }
+        ],
+        "api_keys": [],
+        "alerts": []
+    }
+]
