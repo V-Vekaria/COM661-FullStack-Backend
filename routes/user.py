@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from config import db
 from bson import ObjectId
 from datetime import datetime
-from auth import jwt_required, admin_required
+from auth import basic_auth_required, admin_required
 import bcrypt
 
 user_bp = Blueprint("users", __name__)
@@ -32,8 +32,8 @@ def create_user():
     if not password:
         return jsonify({"error": "Password is required"}), 400
 
-    hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
-
+    hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+    
     user = {
         "profile": {
             "email": email,
@@ -85,7 +85,7 @@ def get_users():
 
 # GET ONE USER
 @user_bp.route("/users/<string:id>", methods=["GET"])
-@jwt_required
+@basic_auth_required
 def get_one_user(id):
 
     query = build_id_query(id)
@@ -106,7 +106,7 @@ def get_one_user(id):
 
 # UPDATE USER
 @user_bp.route("/users/<string:id>", methods=["PUT"])
-@jwt_required
+@basic_auth_required
 def update_user(id):
 
     email = request.form.get("email")
@@ -198,7 +198,7 @@ def add_usage_log(id):
 
 # GET USAGE LOGS
 @user_bp.route("/users/<string:id>/usage", methods=["GET"])
-@jwt_required
+@basic_auth_required
 def get_usage_logs(id):
 
     query = build_id_query(id)
@@ -243,21 +243,17 @@ def delete_usage_log(user_id, log_id):
 def avg_api_calls_per_user():
 
     pipeline = [
-
-        {"$unwind": "$usage_logs"},
-
-        {
-            "$group": {
-                "_id": "$_id",
-                "email": {"$first": "$profile.email"},
-                "subscription_tier": {"$first": "$subscription.tier"},
-                "average_api_calls": {"$avg": "$usage_logs.metrics.api_calls"}
-            }
-        },
-
-        {"$sort": {"average_api_calls": -1}}
-    ]
-
+    {"$unwind": "$usage_logs"},
+    {
+        "$group": {
+            "_id": "$_id",
+            "email": {"$first": "$profile.email"},
+            "subscription_tier": {"$first": "$subscription.tier"},
+            "average_api_calls": {"$avg": "$usage_logs.metrics.api_calls"}
+        }
+    },
+    {"$sort": {"average_api_calls": -1}}
+]
     results = list(users_collection.aggregate(pipeline))
 
     for r in results:

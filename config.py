@@ -1,10 +1,7 @@
-from dotenv import load_dotenv
-import os
 from pymongo import MongoClient
 
-load_dotenv()
+# MongoDB connection
+client = MongoClient("mongodb://localhost:27017")
 
-print("Mongo URI inside config:", os.getenv("MONGO_URI"))
-
-client = MongoClient(os.getenv("MONGO_URI"))
+# Database used for the project
 db = client["saas_monitoring"]
