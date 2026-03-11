@@ -1,8 +1,19 @@
-import json
+from pymongo import MongoClient
 import random
 import bcrypt
 from datetime import datetime, timedelta
 from bson import ObjectId
+
+# MongoDB connection
+client = MongoClient("mongodb://localhost:27017/")
+db = client["saas_monitoring"]
+
+users_collection = db["users"]
+login_collection = db["login"]
+
+# reset collections
+users_collection.delete_many({})
+login_collection.delete_many({})
 
 NUM_USERS = random.randint(10, 15)
 
@@ -23,36 +34,38 @@ def random_date(days=60):
 
 
 def generate_usage_logs():
+
     logs = []
 
-    for _ in range(random.randint(3, 5)):
+    for _ in range(random.randint(3,5)):
+
         log = {
-            "_id": str(ObjectId()),
+            "_id": ObjectId(),
             "timestamp": random_date(),
             "metrics": {
-                "api_calls": random.randint(100, 5000),
+                "api_calls": random.randint(100, 80000),
                 "storage_mb": random.randint(100, 5000)
             },
             "request": {
                 "endpoint": random.choice(endpoints),
-                "region": random.choice(regions)
+                "region": random.choice(regions),
+                "method": random.choice(["GET","POST"])
             }
         }
+
         logs.append(log)
+
     return logs
 
 
-login_users = []
-users = []
 admin_exists = False
-
 
 for i in range(NUM_USERS):
 
     name = names[i]
     email = f"{name}@{DOMAIN}"
 
-    role = random.choice(["admin", "user"])
+    role = random.choice(["admin","user"])
 
     if role == "admin":
         admin_exists = True
@@ -60,16 +73,10 @@ for i in range(NUM_USERS):
     password = "password123"
     hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
 
-    user_id = str(ObjectId())
+    user_id = ObjectId()
 
-    login_user = {
-        "email": email,
-        "password": hashed_password.decode("utf-8"),
-        "role": role,
-        "user_id": user_id
-    }
-
-    user = {
+    # USERS COLLECTION DOCUMENT
+    user_doc = {
         "_id": user_id,
         "profile": {
             "email": email,
@@ -85,20 +92,32 @@ for i in range(NUM_USERS):
         "alerts": []
     }
 
-    login_users.append(login_user)
-    users.append(user)
+    users_collection.insert_one(user_doc)
+
+    # LOGIN COLLECTION DOCUMENT
+    login_doc = {
+        "email": email,
+        "password": hashed_password.decode("utf-8"),
+        "role": role,
+        "user_id": str(user_id)
+    }
+
+    login_collection.insert_one(login_doc)
 
 
+# ensure at least one admin exists
 if not admin_exists:
-    login_users[0]["role"] = "admin"
-    users[0]["profile"]["role"] = "admin"
 
+    first_user = users_collection.find_one()
 
-with open("login_users.json", "w") as f:
-    json.dump(login_users, f, indent=4)
+    users_collection.update_one(
+        {"_id": first_user["_id"]},
+        {"$set": {"profile.role": "admin"}}
+    )
 
-with open("users.json", "w") as f:
-    json.dump(users, f, indent=4)
+    login_collection.update_one(
+        {"user_id": str(first_user["_id"])},
+        {"$set": {"role": "admin"}}
+    )
 
-
-print("Synthetic datasets generated successfully.")
+print("Database seeded successfully with clean ObjectId data.")
