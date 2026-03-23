@@ -49,16 +49,36 @@ def generate_usage_logs():
             "request": {
                 "endpoint": random.choice(endpoints),
                 "region": random.choice(regions),
-                "method": random.choice(["GET","POST"])
+                "method": random.choice(["GET","POST"]),
+                "status_code": random.choice([200, 400, 500])
             }
         }
 
         logs.append(log)
 
     return logs
-
-
 admin_exists = False
+
+def generate_api_keys():
+    keys = []
+    for _ in range(random.randint(1, 3)):
+        keys.append({
+            "key": str(ObjectId()),
+            "created_at": random_date(),
+            "status": random.choice(["active", "revoked"])
+        })
+    return keys
+
+def generate_alerts():
+    alerts = []
+    for _ in range(random.randint(1, 3)):
+        alerts.append({
+            "type": random.choice(["high_usage", "storage_limit"]),
+            "message": "API usage exceeded limit",
+            "timestamp": random_date(),
+            "severity": random.choice(["low", "warning", "critical"])
+        })
+    return alerts
 
 for i in range(NUM_USERS):
 
@@ -79,6 +99,7 @@ for i in range(NUM_USERS):
     user_doc = {
         "_id": user_id,
         "profile": {
+            "name": name,
             "email": email,
             "role": role,
             "created_at": random_date(120)
@@ -88,14 +109,15 @@ for i in range(NUM_USERS):
             "status": "active"
         },
         "usage_logs": generate_usage_logs(),
-        "api_keys": [],
-        "alerts": []
+        "api_keys": generate_api_keys(),
+        "alerts": generate_alerts()
     }
 
     users_collection.insert_one(user_doc)
 
     # LOGIN COLLECTION DOCUMENT
     login_doc = {
+        "name": name,
         "email": email,
         "password": hashed_password.decode("utf-8"),
         "role": role,
