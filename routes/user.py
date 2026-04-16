@@ -46,15 +46,17 @@ def serialize_doc(doc):
 @user_bp.route("/users", methods=["POST"])
 @admin_required
 def create_user():
-    email = request.form.get("email")
-    password = request.form.get("password")
-    role = request.form.get("role", "user")
-    tier = request.form.get("subscription_tier", "free")
-    first_name = request.form.get("first_name", "")
-    last_name = request.form.get("last_name", "")
+    data = request.get_json()
 
-    if not email or not password:
-        return jsonify({"error": "Email and password are required"}), 400
+    email = data.get("email")
+    password = data.get("password")
+    role = data.get("role", "user")
+    tier = data.get("subscription_tier", "free")
+    first_name = data.get("first_name", "")
+    last_name = data.get("last_name", "")
+
+    if not data:
+        return jsonify({"error": "Invalid or missing JSON body"}), 400
 
     if users_col.find_one({"profile.email": email}):
         return jsonify({"error": "Email already exists"}), 409
@@ -131,7 +133,6 @@ def get_users():
 
 
 @user_bp.route("/users/<string:id>", methods=["GET"])
-@basic_auth_required
 def get_one_user(id):
     user = users_col.find_one(build_id_query(id))
     if user is None:
@@ -241,7 +242,6 @@ def add_usage_log(id):
 
 
 @user_bp.route("/users/<string:id>/usage", methods=["GET"])
-@basic_auth_required
 def get_usage_logs(id):
     user = users_col.find_one(build_id_query(id))
     if user is None:
@@ -323,7 +323,6 @@ def add_api_key(id):
 
 
 @user_bp.route("/users/<string:id>/api-keys", methods=["GET"])
-@basic_auth_required
 def get_api_keys(id):
     user = users_col.find_one(build_id_query(id))
     if user is None:
@@ -387,7 +386,6 @@ def add_alert(id):
 
 
 @user_bp.route("/users/<string:id>/alerts", methods=["GET"])
-@basic_auth_required
 def get_alerts(id):
     user = users_col.find_one(build_id_query(id))
     if user is None:
@@ -499,7 +497,6 @@ def get_activity_logs():
 
 
 @user_bp.route("/activity-logs/<string:id>", methods=["GET"])
-@basic_auth_required
 def get_activity_log(id):
     log = activity_logs_col.find_one(build_id_query(id))
     if log is None:
