@@ -139,6 +139,37 @@ def get_one_user(id):
         return jsonify({"error": "User not found"}), 404
     return jsonify(serialize_doc(user)), 200
 
+@user_bp.route("/users/search/name", methods=["GET"])
+@admin_required
+def search_users_by_name():
+    first_name = request.args.get("first_name", "")
+    last_name = request.args.get("last_name", "")
+
+    query = {}
+
+    if first_name:
+        query["profile.first_name"] = {"$regex": first_name, "$options": "i"}
+    if last_name:
+        query["profile.last_name"] = {"$regex": last_name, "$options": "i"}
+
+    if not query:
+        return jsonify({"error": "Please provide first_name or last_name"}), 400
+
+    users = users_col.find(query, {
+        "_id": 1,
+        "profile.first_name": 1,
+        "profile.last_name": 1,
+        "profile.email": 1,
+        "profile.role": 1,
+        "subscription.tier": 1
+    })
+
+    user_list = [serialize_doc(u) for u in users]
+
+    if not user_list:
+        return jsonify({"message": "No users found"}), 404
+
+    return jsonify(user_list), 200
 
 @user_bp.route("/users/<string:id>", methods=["PUT"])
 @basic_auth_required
