@@ -123,7 +123,8 @@ def get_users():
 
     # only return profile in list view, use GET /users/<id> for full detail
     projection = {
-        "profile": 1
+        "profile": 1,
+        "subscription.tier": 1
     }
 
     total = users_col.count_documents(query)
