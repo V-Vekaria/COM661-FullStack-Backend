@@ -9,18 +9,16 @@ from flask import Blueprint, jsonify, make_response, request
 from config import db
 
 auth_bp = Blueprint("auth", __name__)
-login_collection = db["login"]
+login_collection   = db["login"]
+blacklisted_tokens = db["blacklisted_tokens"]
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "saas-monitoring-secret-2026")
 
-
-# ---------------------------------------------------------------------------
 # LOGIN
-# ---------------------------------------------------------------------------
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
-    data = request.get_json()
+    data = request.get_json(force=True, silent=True)
     if not data:
         return make_response(jsonify({"error": "Invalid or missing JSON body"}), 400)
 
@@ -55,9 +53,7 @@ def login():
     return make_response(jsonify({"token": token, "role": role, "email": email}), 200)
 
 
-# ---------------------------------------------------------------------------
 # GET /me  — returns current operator info from token
-# ---------------------------------------------------------------------------
 
 @auth_bp.route("/me", methods=["GET"])
 def get_me():
@@ -78,9 +74,32 @@ def get_me():
     }), 200)
 
 
-# ---------------------------------------------------------------------------
+# LOGOUT — blacklists the token in DB so it cannot be reused
+
+@auth_bp.route("/logout", methods=["POST"])
+def logout():
+    token = request.headers.get("x-access-token")
+    if not token:
+        return make_response(jsonify({"error": "Token is missing"}), 401)
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+    except jwt.ExpiredSignatureError:
+        return make_response(jsonify({"error": "Token has already expired"}), 401)
+    except jwt.InvalidTokenError:
+        return make_response(jsonify({"error": "Token is invalid"}), 401)
+
+    if blacklisted_tokens.find_one({"token": token}):
+        return make_response(jsonify({"error": "Token already invalidated"}), 401)
+
+    blacklisted_tokens.insert_one({
+        "token":      token,
+        "email":      payload.get("user"),
+        "invalidated_at": datetime.datetime.now(datetime.UTC).isoformat(),
+    })
+    return make_response(jsonify({"message": "Logged out successfully"}), 200)
+
+
 # DECORATORS
-# ---------------------------------------------------------------------------
 
 def _decode_token():
     """Return decoded payload or None."""
@@ -89,11 +108,15 @@ def _decode_token():
         return None, make_response(jsonify({"error": "Token is missing"}), 401)
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-        return payload, None
     except jwt.ExpiredSignatureError:
         return None, make_response(jsonify({"error": "Token has expired"}), 401)
     except jwt.InvalidTokenError:
         return None, make_response(jsonify({"error": "Token is invalid"}), 401)
+
+    if blacklisted_tokens.find_one({"token": token}):
+        return None, make_response(jsonify({"error": "Token has been invalidated — please log in again"}), 401)
+
+    return payload, None
 
 
 def token_required(f):
