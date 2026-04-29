@@ -1,24 +1,22 @@
-from pymongo import MongoClient
 import random
 import bcrypt
 import string
 from datetime import datetime, timedelta
 from bson import ObjectId
+from pymongo import MongoClient
 
-# CONFIG — edit these to control how much data is generated
+# ---------------------------------------------------------------------------
+# CONFIG
+# ---------------------------------------------------------------------------
 
-NUM_USERS            = 20
-NUM_ADMINS           = 3
-NUM_ACTIVITY_LOGS    = 80
-NUM_ANOMALY_FLAGS    = 30
-USAGE_LOGS_PER_USER  = (3, 6)
-API_KEYS_PER_USER    = (1, 3)
-ALERTS_PER_USER      = (1, 3)
-SESSIONS_PER_LOGIN   = (2, 4)
+NUM_USERS                   = 25
+NUM_ACTIVITY_LOGS           = 100
+NUM_ANOMALY_FLAGS            = 35
+USAGE_LOGS_PER_USER         = (3, 7)
+API_KEYS_PER_USER           = (1, 3)
+ALERTS_PER_USER             = (1, 3)
 RESOLUTION_LOGS_PER_ANOMALY = (1, 3)
 
-
-# MongoDB connection
 client = MongoClient("mongodb://localhost:27017/")
 db     = client["saas_monitoring"]
 
@@ -27,8 +25,6 @@ login_col         = db["login"]
 activity_logs_col = db["activity_logs"]
 anomaly_flags_col = db["anomaly_flags"]
 
-
-# Drop old data and reset collections
 print("Dropping old collections...")
 users_col.drop()
 login_col.drop()
@@ -36,23 +32,24 @@ activity_logs_col.drop()
 anomaly_flags_col.drop()
 print("Collections dropped. Seeding fresh data...\n")
 
+# ---------------------------------------------------------------------------
+# REFERENCE DATA
+# ---------------------------------------------------------------------------
 
-# Reference data pools
 REGIONS      = ["eu-west", "us-east", "us-west", "ap-south", "ap-northeast", "sa-east", "af-south"]
 DEVICE_TYPES = ["desktop", "mobile", "tablet", "server", "cli"]
 ENDPOINTS    = [
     "/api/upload", "/api/download", "/api/users", "/api/analytics",
-    "/api/reports", "/api/billing", "/api/settings", "/api/export", "/api/alerts"
+    "/api/reports", "/api/billing", "/api/settings", "/api/export", "/api/alerts",
 ]
 HTTP_METHODS = ["GET", "POST", "PUT", "DELETE", "PATCH"]
 ACTION_TYPES = [
     "login", "logout", "upload", "download", "delete", "create", "update",
     "export", "failed_login", "password_reset", "api_key_generate",
-    "billing_view", "report_generate", "settings_update"
+    "billing_view", "report_generate", "settings_update",
 ]
 SUBSCRIPTION_TIERS = ["free", "pro", "enterprise"]
 ACCOUNT_STATUSES   = ["active", "suspended", "inactive", "pending_verification"]
-ROLES              = ["admin", "user", "analyst", "moderator"]
 ANOMALY_REASONS    = [
     "Excessive failed logins",
     "Unusual API call volume spike",
@@ -76,65 +73,61 @@ RESOLUTION_NOTES = [
     "No further action required after audit.",
 ]
 RESOLUTION_ACTIONS = ["whitelisted", "suspended", "password_reset", "mfa_enforced", "no_action", "escalated"]
-
-# GeoJSON coordinates per region (enables geo queries in MongoDB)
-REGION_COORDS = {
-    "eu-west":      {"type": "Point", "coordinates": [-0.1278,   51.5074]},
-    "us-east":      {"type": "Point", "coordinates": [-77.0369,  38.9072]},
-    "us-west":      {"type": "Point", "coordinates": [-122.4194, 37.7749]},
-    "ap-south":     {"type": "Point", "coordinates": [72.8777,   19.0760]},
-    "ap-northeast": {"type": "Point", "coordinates": [139.6917,  35.6895]},
-    "sa-east":      {"type": "Point", "coordinates": [-46.6333, -23.5505]},
-    "af-south":     {"type": "Point", "coordinates": [18.4241,  -33.9249]},
+REGION_COORDS      = {
+    "eu-west":      {"type": "Point", "coordinates": [-0.1278,    51.5074]},
+    "us-east":      {"type": "Point", "coordinates": [-77.0369,   38.9072]},
+    "us-west":      {"type": "Point", "coordinates": [-122.4194,  37.7749]},
+    "ap-south":     {"type": "Point", "coordinates": [72.8777,    19.0760]},
+    "ap-northeast": {"type": "Point", "coordinates": [139.6917,   35.6895]},
+    "sa-east":      {"type": "Point", "coordinates": [-46.6333,  -23.5505]},
+    "af-south":     {"type": "Point", "coordinates": [18.4241,   -33.9249]},
 }
-
 COMPANY_DOMAINS = [
     "cloudmetrics.io", "saasplatform.net", "techcorp.com",
-    "innovatesys.co", "databridge.io", "nexusops.com", "skylabs.tech"
+    "innovatesys.co", "databridge.io", "nexusops.com", "skylabs.tech",
 ]
 FIRST_NAMES = [
     "Alice", "Bob", "Charlie", "Diana", "Eve", "Frank", "Grace", "Henry",
     "Iris", "James", "Karen", "Liam", "Maya", "Noah", "Olivia", "Paul",
-    "Quinn", "Rachel", "Sam", "Tara", "Ulrich", "Vera", "Walter", "Xena", "Yusuf"
+    "Quinn", "Rachel", "Sam", "Tara", "Ulrich", "Vera", "Walter", "Xena", "Yusuf",
 ]
 LAST_NAMES = [
     "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller",
-    "Davis", "Rodriguez", "Martinez", "Patel", "Nguyen", "Kim", "Chen", "Singh"
+    "Davis", "Rodriguez", "Martinez", "Patel", "Nguyen", "Kim", "Chen", "Singh",
 ]
-USER_AGENTS = [
+USER_AGENTS   = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
     "python-requests/2.28.0",
     "CloudMetrics-CLI/1.4.2",
     "okhttp/4.9.0",
 ]
-RESOURCE_NAMES = [
-    "Q4_report.csv", "user_export.json", "analytics_dashboard",
-    "billing_record", "audit_log", "system_config"
-]
-RESOURCE_TYPES = ["file", "report", "user", "api_key", "dashboard", "dataset"]
-ALERT_TYPES    = ["threshold_breach", "security_event", "billing_alert", "performance_degradation"]
-ALERT_MESSAGES = [
+RESOURCE_TYPES  = ["file", "report", "user", "api_key", "dashboard", "dataset"]
+RESOURCE_NAMES  = ["Q4_report.csv", "user_export.json", "analytics_dashboard", "billing_record", "audit_log"]
+ALERT_TYPES     = ["threshold_breach", "security_event", "billing_alert", "performance_degradation"]
+ALERT_MESSAGES  = [
     "API call limit 90% reached",
     "Storage quota exceeded",
     "Unusual login location detected",
     "Billing payment failed",
     "Response time degraded",
 ]
-INDUSTRIES    = ["fintech", "healthtech", "ecommerce", "logistics", "media", "edtech", "hr_tech"]
-COMPANY_SIZES = ["1-10", "11-50", "51-200", "201-1000", "1000+"]
-SIGNUP_SOURCES = ["organic", "referral", "paid_ad", "partner", "trial"]
-SEVERITIES    = ["low", "medium", "high", "critical"]
-CATEGORIES    = ["security", "performance", "billing", "compliance"]
-COUNTRIES     = ["UK", "US", "IN", "JP", "BR", "DE", "FR", "AU"]
-PERMISSIONS   = ["read", "write", "delete", "admin", "billing"]
-TIMEZONES     = ["UTC", "America/New_York", "Europe/London", "Asia/Tokyo", "Asia/Mumbai", "America/Sao_Paulo"]
-LANGUAGES     = ["en", "es", "fr", "de", "ja", "pt"]
+INDUSTRIES      = ["fintech", "healthtech", "ecommerce", "logistics", "media", "edtech", "hr_tech"]
+COMPANY_SIZES   = ["1-10", "11-50", "51-200", "201-1000", "1000+"]
+SIGNUP_SOURCES  = ["organic", "referral", "paid_ad", "partner", "trial"]
+SEVERITIES      = ["low", "medium", "high", "critical"]
+CATEGORIES      = ["security", "performance", "billing", "compliance"]
+COUNTRIES       = ["UK", "US", "IN", "JP", "BR", "DE", "FR", "AU"]
+PERMISSIONS     = ["read", "write", "delete", "admin", "billing"]
+TIMEZONES       = ["UTC", "America/New_York", "Europe/London", "Asia/Tokyo", "Asia/Mumbai"]
+LANGUAGES       = ["en", "es", "fr", "de", "ja", "pt"]
 
 
-# Helper functions
+# ---------------------------------------------------------------------------
+# HELPERS
+# ---------------------------------------------------------------------------
+
 def random_date(days_ago_max=180, days_ago_min=0):
-    """Return a datetime between days_ago_min and days_ago_max ago."""
     now   = datetime.utcnow()
     start = now - timedelta(days=days_ago_max)
     end   = now - timedelta(days=days_ago_min)
@@ -143,8 +136,7 @@ def random_date(days_ago_max=180, days_ago_min=0):
 
 
 def fake_ip():
-    return (f"{random.randint(1,254)}.{random.randint(0,255)}"
-            f".{random.randint(0,255)}.{random.randint(1,254)}")
+    return f"{random.randint(1,254)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(1,254)}"
 
 
 def rand_str(length=12):
@@ -155,19 +147,30 @@ def hash_password(raw="password123"):
     return bcrypt.hashpw(raw.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
 
-# Sub-document builders
+# ---------------------------------------------------------------------------
+# SUB-DOCUMENT BUILDERS
+# ---------------------------------------------------------------------------
+
 def generate_usage_logs():
+    """Usage logs with 4-level deep nesting: metrics.breakdown.*"""
     logs = []
     for _ in range(random.randint(*USAGE_LOGS_PER_USER)):
-        region = random.choice(REGIONS)
+        region    = random.choice(REGIONS)
+        api_calls = random.randint(100, 100_000)
         logs.append({
-            "_id": ObjectId(),
+            "_id":       ObjectId(),
             "timestamp": random_date(90),
             "metrics": {
-                "api_calls":       random.randint(100, 100_000),
+                "api_calls":       api_calls,
                 "storage_mb":      round(random.uniform(10, 10_000), 2),
                 "bandwidth_gb":    round(random.uniform(0.1, 500), 2),
                 "active_sessions": random.randint(1, 50),
+                "breakdown": {                              # level 4
+                    "read_ops":      int(api_calls * random.uniform(0.5, 0.7)),
+                    "write_ops":     int(api_calls * random.uniform(0.2, 0.35)),
+                    "delete_ops":    int(api_calls * random.uniform(0.01, 0.1)),
+                    "cache_hit_pct": round(random.uniform(40, 99), 1),
+                },
             },
             "request": {
                 "endpoint":         random.choice(ENDPOINTS),
@@ -176,7 +179,7 @@ def generate_usage_logs():
                 "response_time_ms": random.randint(50, 5_000),
                 "status_code":      random.choice([200, 200, 200, 201, 400, 401, 403, 404, 500]),
             },
-            "location": REGION_COORDS[region],  # GeoJSON — enables geo queries
+            "location": REGION_COORDS[region],
         })
     return logs
 
@@ -210,21 +213,6 @@ def generate_alerts():
     return alerts
 
 
-def generate_sessions(user_index):
-    sessions = []
-    for j in range(random.randint(*SESSIONS_PER_LOGIN)):
-        sessions.append({
-            "_id":        ObjectId(),
-            "token_hash": hash_password(f"session_{user_index}_{j}"),
-            "device":     random.choice(DEVICE_TYPES),
-            "ip_address": fake_ip(),
-            "created_at": random_date(30),
-            "expires_at": random_date(10, 1),
-            "revoked":    random.choice([True, False]),
-        })
-    return sessions
-
-
 def generate_resolution_logs(admin_ids, admin_emails):
     logs = []
     for _ in range(random.randint(*RESOLUTION_LOGS_PER_ANOMALY)):
@@ -240,7 +228,43 @@ def generate_resolution_logs(admin_ids, admin_emails):
     return logs
 
 
-# Seed users + login collections
+# ---------------------------------------------------------------------------
+# SEED OPERATORS — admin + analyst accounts in login collection
+# ---------------------------------------------------------------------------
+
+OPERATOR_ACCOUNTS = [
+    {"email": "admin@cloudmetrics.io",   "role": "admin"},
+    {"email": "admin2@cloudmetrics.io",  "role": "admin"},
+    {"email": "analyst@cloudmetrics.io", "role": "analyst"},
+    {"email": "analyst2@cloudmetrics.io","role": "analyst"},
+]
+
+operator_ids    = []
+operator_emails = []
+
+for op in OPERATOR_ACCOUNTS:
+    op_id = ObjectId()
+    operator_ids.append(op_id)
+    operator_emails.append(op["email"])
+    login_col.insert_one({
+        "email":               op["email"],
+        "password":            hash_password("password123"),
+        "role":                op["role"],
+        "user_id":             str(op_id),
+        "failed_attempts":     0,
+        "last_password_change": random_date(180, 10),
+    })
+
+print(f"  ✓ operators     — {len(OPERATOR_ACCOUNTS)} login accounts seeded (2 admin, 2 analyst)")
+
+admin_ids    = [oid for oid, op in zip(operator_ids, OPERATOR_ACCOUNTS) if op["role"] == "admin"]
+admin_emails = [op["email"] for op in OPERATOR_ACCOUNTS if op["role"] == "admin"]
+
+
+# ---------------------------------------------------------------------------
+# SEED MONITORED USERS (SaaS customers — data, not system operators)
+# ---------------------------------------------------------------------------
+
 user_ids    = []
 user_emails = []
 
@@ -249,15 +273,13 @@ for i in range(NUM_USERS):
     lname  = random.choice(LAST_NAMES)
     domain = random.choice(COMPANY_DOMAINS)
     email  = f"{fname.lower()}.{lname.lower()}{i}@{domain}"
-    role   = "admin" if i < NUM_ADMINS else random.choice(ROLES)
     tier   = random.choice(SUBSCRIPTION_TIERS)
-    status = "active" if i < NUM_ADMINS else random.choice(ACCOUNT_STATUSES)
+    status = random.choice(ACCOUNT_STATUSES)
 
     user_id = ObjectId()
     user_ids.append(user_id)
     user_emails.append(email)
 
-    # --- users collection document ---
     user_doc = {
         "_id": user_id,
         "profile": {
@@ -265,7 +287,6 @@ for i in range(NUM_USERS):
             "last_name":  lname,
             "email":      email,
             "phone":      f"+{random.randint(1,99)}{random.randint(1_000_000_000, 9_999_999_999)}",
-            "role":       role,
             "created_at": random_date(400, 200),
             "last_login": random_date(30),
             "avatar_url": f"https://cdn.cloudmetrics.io/avatars/{fname.lower()}_{i+1}.png",
@@ -273,10 +294,10 @@ for i in range(NUM_USERS):
             "language":   random.choice(LANGUAGES),
         },
         "subscription": {
-            "tier":          tier,
-            "status":        status,
-            "billing_cycle": random.choice(["monthly", "annual"]),
-            "renewal_date":  random_date(90, 1),
+            "tier":           tier,
+            "status":         status,
+            "billing_cycle":  random.choice(["monthly", "annual"]),
+            "renewal_date":   random_date(90, 1),
             "seats_allocated": (
                 random.randint(1, 50) if tier == "enterprise"
                 else random.randint(1, 5) if tier == "pro"
@@ -284,15 +305,28 @@ for i in range(NUM_USERS):
             ),
             "features_enabled": {
                 "sso":                tier == "enterprise",
-                "advanced_analytics": tier in ["pro", "enterprise"],
-                "priority_support":   tier in ["pro", "enterprise"],
+                "advanced_analytics": tier in ("pro", "enterprise"),
+                "priority_support":   tier in ("pro", "enterprise"),
                 "audit_logs":         tier == "enterprise",
                 "custom_domains":     tier == "enterprise",
+                "rate_limits": {                            # level 3
+                    "requests_per_minute": 100 if tier == "free" else (500 if tier == "pro" else 2000),
+                    "burst_capacity":      200 if tier == "free" else (1000 if tier == "pro" else 5000),
+                    "throttle_enabled":    tier != "free",
+                },
+            },
+            "billing": {                                    # nested inside subscription
+                "plan_price_usd": 0 if tier == "free" else (29.99 if tier == "pro" else 199.99),
+                "payment_method": {                         # level 4
+                    "type":      random.choice(["card", "bank_transfer", "paypal"]) if tier != "free" else None,
+                    "last_four": str(random.randint(1000, 9999)) if tier != "free" else None,
+                    "expires":   "2027-12" if tier != "free" else None,
+                },
             },
         },
-        "usage_logs": generate_usage_logs(),   # embedded sub-documents
-        "api_keys":   generate_api_keys(tier), # embedded sub-documents
-        "alerts":     generate_alerts(),        # embedded sub-documents
+        "usage_logs": generate_usage_logs(),
+        "api_keys":   generate_api_keys(tier),
+        "alerts":     generate_alerts(),
         "metadata": {
             "signup_source": random.choice(SIGNUP_SOURCES),
             "industry":      random.choice(INDUSTRIES),
@@ -303,35 +337,20 @@ for i in range(NUM_USERS):
     }
     users_col.insert_one(user_doc)
 
-    # --- login collection document ---
-    login_doc = {
-        "email":                email,
-        "password":             hash_password("password123"),
-        "role":                 role,
-        "user_id":              str(user_id),
-        "mfa_enabled":          random.choice([True, False]),
-        "failed_attempts":      random.randint(0, 10),
-        "locked_until":         random_date(5, 1) if random.random() > 0.8 else None,
-        "last_password_change": random_date(180, 10),
-        "sessions":             generate_sessions(i),  # embedded sub-documents
-    }
-    login_col.insert_one(login_doc)
-
-print(f"  ✓ users         — {users_col.count_documents({})} documents inserted")
-print(f"  ✓ login         — {login_col.count_documents({})} documents inserted")
+print(f"  ✓ users         — {users_col.count_documents({})} monitored users inserted")
 
 
-# Seed activity_logs collection (standalone documents)
-admin_ids    = user_ids[:NUM_ADMINS]
-admin_emails = user_emails[:NUM_ADMINS]
+# ---------------------------------------------------------------------------
+# SEED ACTIVITY LOGS
+# ---------------------------------------------------------------------------
 
 activity_docs = []
 for _ in range(NUM_ACTIVITY_LOGS):
     idx    = random.randint(0, NUM_USERS - 1)
     region = random.choice(REGIONS)
     activity_docs.append({
-        "user_id":    user_ids[idx],
-        "user_email": user_emails[idx],
+        "user_id":     user_ids[idx],
+        "user_email":  user_emails[idx],
         "action_type": random.choice(ACTION_TYPES),
         "resource": {
             "id":   rand_str(12),
@@ -343,7 +362,7 @@ for _ in range(NUM_ACTIVITY_LOGS):
             "device_type": random.choice(DEVICE_TYPES),
             "user_agent":  random.choice(USER_AGENTS),
             "region":      region,
-            "location":    REGION_COORDS[region],  # GeoJSON
+            "location":    REGION_COORDS[region],
         },
         "performance": {
             "response_time_ms":  random.randint(20, 8_000),
@@ -358,7 +377,10 @@ activity_logs_col.insert_many(activity_docs)
 print(f"  ✓ activity_logs — {activity_logs_col.count_documents({})} documents inserted")
 
 
-# Seed anomaly_flags collection (standalone documents with resolution sub-docs)
+# ---------------------------------------------------------------------------
+# SEED ANOMALY FLAGS
+# ---------------------------------------------------------------------------
+
 anomaly_docs = []
 for _ in range(NUM_ANOMALY_FLAGS):
     idx      = random.randint(0, NUM_USERS - 1)
@@ -372,9 +394,8 @@ for _ in range(NUM_ANOMALY_FLAGS):
         "category":   random.choice(CATEGORIES),
         "detected_at": random_date(120),
         "resolved":   resolved,
-        "resolution_logs": (                               # embedded sub-documents
-            generate_resolution_logs(admin_ids, admin_emails)
-            if resolved else []
+        "resolution_logs": (
+            generate_resolution_logs(admin_ids, admin_emails) if resolved else []
         ),
         "evidence": {
             "failed_login_count": random.randint(0, 30),
@@ -393,8 +414,13 @@ for _ in range(NUM_ANOMALY_FLAGS):
 anomaly_flags_col.insert_many(anomaly_docs)
 print(f"  ✓ anomaly_flags — {anomaly_flags_col.count_documents({})} documents inserted")
 
+# ---------------------------------------------------------------------------
+# DONE
+# ---------------------------------------------------------------------------
 
-# Done
-print("\nDatabase seeded successfully!")
-print(f"  Database    : saas_monitoring")
-print(f"  Collections : users, login, activity_logs, anomaly_flags")
+print("\nDatabase seeded successfully.")
+print("  Database    : saas_monitoring")
+print("  Collections : users, login, activity_logs, anomaly_flags")
+print("\nOperator accounts (all password: password123):")
+for op in OPERATOR_ACCOUNTS:
+    print(f"  {op['role']:8}  {op['email']}")
