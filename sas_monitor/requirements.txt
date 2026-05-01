@@ -1,7 +1,0 @@
-flask
-flask-jwt-extended
-pymongo
-bcrypt
-pytest
-pytest-flask
-python-dotenv
