@@ -42,7 +42,7 @@ def login():
         algorithm="HS256",
     )
 
-    return jsonify({"token": token, "role": login_doc["role"]}), 200
+    return jsonify({"token": token, "role": login_doc["role"], "email": login_doc["email"]}), 200
 
 
 @auth_bp.route("/logout", methods=["POST"])
