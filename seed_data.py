@@ -46,7 +46,7 @@ ACTION_TYPES = [
 ]
 SUBSCRIPTION_TIERS = ["free", "pro", "enterprise"]
 ACCOUNT_STATUSES   = ["active", "suspended", "inactive", "pending_verification"]
-ROLES              = ["admin", "user", "analyst", "moderator"]
+ROLES              = ["admin", "analyst"]
 ANOMALY_REASONS    = [
     "Excessive failed logins",
     "Unusual API call volume spike",

@@ -8,6 +8,7 @@ import re
 users_bp = Blueprint("users", __name__)
 
 VALID_TIERS    = {"free", "pro", "enterprise"}
+VALID_ROLES    = {"admin", "analyst"}
 VALID_STATUSES = {"active", "suspended", "inactive", "pending_verification"}
 VALID_CHURN    = {"low", "medium", "high"}
 VALID_REGIONS  = {"eu-west", "us-east", "us-west", "ap-south", "ap-northeast", "sa-east", "af-south"}
@@ -51,6 +52,11 @@ def create_user():
     if len(body["password"]) < 6:
         return jsonify({"error": "Password too short (min 6 chars)", "field": "password"}), 422
 
+    # Validate role if provided
+    role = body.get("role", "analyst")
+    if role not in VALID_ROLES:
+        return jsonify({"error": "Invalid role. Must be admin or analyst", "field": "role"}), 422
+
     # Validate subscription tier if provided
     tier = body.get("subscription_tier", "free")
     if tier not in VALID_TIERS:
@@ -71,7 +77,7 @@ def create_user():
             "first_name": body.get("first_name", ""),
             "last_name":  body.get("last_name", ""),
             "email":      body["email"],
-            "role":       "user",
+            "role":       role,
             "created_at": __import__("datetime").datetime.utcnow(),
         },
         "subscription": {
@@ -89,7 +95,7 @@ def create_user():
     login_doc = {
         "email":    body["email"],
         "password": hashed,
-        "role":     "user",
+        "role":     role,
         "user_id":  str(user_id),
     }
 

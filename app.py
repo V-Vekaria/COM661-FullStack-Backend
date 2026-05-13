@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from config import get_db
 from auth import auth_bp
 from routes.users import users_bp
@@ -8,6 +9,7 @@ from routes.analytics import analytics_bp
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "saas-monitor-secret-key"
+CORS(app, origins=["http://localhost:4200"], supports_credentials=True)
 
 # Register blueprints
 app.register_blueprint(auth_bp)
