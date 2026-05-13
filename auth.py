@@ -1,162 +1,60 @@
-import os
-import datetime
-from functools import wraps
-
+from flask import Blueprint, request, jsonify
+from config import get_db
+from middleware.auth_middleware import blacklisted_tokens, require_auth, decode_token
 import bcrypt
 import jwt
-from flask import Blueprint, jsonify, make_response, request
-
-from config import db
+import datetime
 
 auth_bp = Blueprint("auth", __name__)
-login_collection   = db["login"]
-blacklisted_tokens = db["blacklisted_tokens"]
+SECRET = "saas-monitor-secret-key"
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "saas-monitoring-secret-2026")
-
-# LOGIN
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
-    data = request.get_json(force=True, silent=True)
-    if not data:
-        return make_response(jsonify({"error": "Invalid or missing JSON body"}), 400)
+    body = request.get_json(silent=True)
 
-    email    = data.get("email", "").strip()
-    password = data.get("password", "")
+    # Missing or empty body
+    if not body:
+        return jsonify({"error": "Request body required"}), 400
+    if "email" not in body:
+        return jsonify({"error": "email is required", "field": "email"}), 400
+    if "password" not in body:
+        return jsonify({"error": "password is required", "field": "password"}), 400
 
-    if not email or not password:
-        return make_response(jsonify({"error": "Email and password required"}), 400)
+    db = get_db()
+    login_doc = db["login"].find_one({"email": body["email"]})
 
-    user = login_collection.find_one({"email": email})
-    if not user:
-        return make_response(jsonify({"error": "Invalid credentials"}), 401)
+    if not login_doc:
+        return jsonify({"error": "Invalid credentials"}), 401
 
-    if not bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):
-        return make_response(jsonify({"error": "Invalid credentials"}), 401)
-
-    role = user["role"]
-    if role not in ("admin", "analyst"):
-        return make_response(jsonify({"error": "Access denied"}), 403)
+    # Check password
+    if not bcrypt.checkpw(body["password"].encode("utf-8"), login_doc["password"].encode("utf-8")):
+        return jsonify({"error": "Invalid credentials"}), 401
 
     token = jwt.encode(
         {
-            "user":    email,
-            "role":    role,
-            "user_id": str(user.get("user_id", "")),
-            "exp":     datetime.datetime.now(datetime.UTC) + datetime.timedelta(hours=24),
+            "email": login_doc["email"],
+            "role":  login_doc["role"],
+            "user_id": str(login_doc["user_id"]),
+            "exp":   datetime.datetime.utcnow() + datetime.timedelta(hours=24),
         },
-        SECRET_KEY,
+        SECRET,
         algorithm="HS256",
     )
 
-    return make_response(jsonify({"token": token, "role": role, "email": email}), 200)
+    return jsonify({"token": token, "role": login_doc["role"]}), 200
 
-
-# GET /me  — returns current operator info from token
-
-@auth_bp.route("/me", methods=["GET"])
-def get_me():
-    token = request.headers.get("x-access-token")
-    if not token:
-        return make_response(jsonify({"error": "Token is missing"}), 401)
-    try:
-        data = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-    except jwt.ExpiredSignatureError:
-        return make_response(jsonify({"error": "Token has expired"}), 401)
-    except jwt.InvalidTokenError:
-        return make_response(jsonify({"error": "Token is invalid"}), 401)
-
-    return make_response(jsonify({
-        "email":   data["user"],
-        "role":    data["role"],
-        "user_id": data.get("user_id", ""),
-    }), 200)
-
-
-# LOGOUT — blacklists the token in DB so it cannot be reused
 
 @auth_bp.route("/logout", methods=["POST"])
+@require_auth
 def logout():
     token = request.headers.get("x-access-token")
-    if not token:
-        return make_response(jsonify({"error": "Token is missing"}), 401)
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-    except jwt.ExpiredSignatureError:
-        return make_response(jsonify({"error": "Token has already expired"}), 401)
-    except jwt.InvalidTokenError:
-        return make_response(jsonify({"error": "Token is invalid"}), 401)
-
-    if blacklisted_tokens.find_one({"token": token}):
-        return make_response(jsonify({"error": "Token already invalidated"}), 401)
-
-    blacklisted_tokens.insert_one({
-        "token":      token,
-        "email":      payload.get("user"),
-        "invalidated_at": datetime.datetime.now(datetime.UTC).isoformat(),
-    })
-    return make_response(jsonify({"message": "Logged out successfully"}), 200)
+    blacklisted_tokens.add(token)
+    return jsonify({"message": "Logged out successfully"}), 200
 
 
-# DECORATORS
-
-def _decode_token():
-    """Return decoded payload or None."""
-    token = request.headers.get("x-access-token")
-    if not token:
-        return None, make_response(jsonify({"error": "Token is missing"}), 401)
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-    except jwt.ExpiredSignatureError:
-        return None, make_response(jsonify({"error": "Token has expired"}), 401)
-    except jwt.InvalidTokenError:
-        return None, make_response(jsonify({"error": "Token is invalid"}), 401)
-
-    if blacklisted_tokens.find_one({"token": token}):
-        return None, make_response(jsonify({"error": "Token has been invalidated — please log in again"}), 401)
-
-    return payload, None
-
-
-def token_required(f):
-    """Any valid JWT (admin or analyst)."""
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        payload, err = _decode_token()
-        if err:
-            return err
-        if payload["role"] not in ("admin", "analyst"):
-            return make_response(jsonify({"error": "Access denied"}), 403)
-        return f(*args, **kwargs)
-    return decorated
-
-
-def admin_required(f):
-    """Admin only."""
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        payload, err = _decode_token()
-        if err:
-            return err
-        if payload["role"] != "admin":
-            return make_response(jsonify({"error": "Admin access required"}), 403)
-        return f(*args, **kwargs)
-    return decorated
-
-
-def analyst_or_admin(f):
-    """Read/acknowledge endpoints — both roles allowed."""
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        payload, err = _decode_token()
-        if err:
-            return err
-        if payload["role"] not in ("admin", "analyst"):
-            return make_response(jsonify({"error": "Access denied"}), 403)
-        return f(*args, **kwargs)
-    return decorated
-
-
-# kept so nothing breaks during transition
-basic_auth_required = token_required
+@auth_bp.route("/me", methods=["GET"])
+@require_auth
+def me():
+    user = request.current_user
+    return jsonify({"email": user["email"], "role": user["role"], "user_id": user["user_id"]}), 200

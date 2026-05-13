@@ -1,7 +1,12 @@
 from pymongo import MongoClient
 
-# MongoDB connection
-client = MongoClient("mongodb://localhost:27017")
+_client = None
+_db = None
 
-# Database used for the project
-db = client["saas_monitoring"]
+
+def get_db():
+    global _client, _db
+    if _db is None:
+        _client = MongoClient("mongodb://localhost:27017/")
+        _db = _client["saas_monitoring"]
+    return _db

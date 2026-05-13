@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip show *)",
+      "Bash(.venv\\\\Scripts\\\\pip install *)",
+      "Bash(dir \"d:\\\\COM661-FullStack-Backend-main\" /b /a:d)"
+    ]
+  }
+}
