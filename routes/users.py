@@ -106,7 +106,7 @@ def create_user():
 
 
 @users_bp.route("/users", methods=["GET"])
-@require_admin
+@require_admin_or_analyst
 def list_users():
     db = get_db()
     query = {}
@@ -130,10 +130,10 @@ def list_users():
 
 
 @users_bp.route("/users/search", methods=["GET"])
-@require_admin
+@require_admin_or_analyst
 def search_users():
     args = request.args
-    allowed = {"email", "first_name", "last_name", "tier", "churn_risk"}
+    allowed = {"q", "email", "first_name", "last_name", "tier", "churn_risk"}
 
     if not any(k in args for k in allowed):
         return jsonify({"error": "At least one search parameter required"}), 400
@@ -141,17 +141,26 @@ def search_users():
     db = get_db()
     query = {}
 
-    if "email" in args:
-        query["profile.email"] = {"$regex": args["email"], "$options": "i"}
-    if "first_name" in args:
-        query["profile.first_name"] = {"$regex": args["first_name"], "$options": "i"}
-    if "last_name" in args:
-        query["profile.last_name"] = {"$regex": args["last_name"], "$options": "i"}
-    if "tier" in args:
-        tiers = args["tier"].split(",")
-        query["subscription.tier"] = {"$in": tiers}
-    if "churn_risk" in args:
-        query["metadata.churn_risk"] = args["churn_risk"]
+    # Generic search across name and email fields
+    if "q" in args:
+        q = args["q"]
+        query["$or"] = [
+            {"profile.first_name": {"$regex": q, "$options": "i"}},
+            {"profile.last_name":  {"$regex": q, "$options": "i"}},
+            {"profile.email":      {"$regex": q, "$options": "i"}},
+        ]
+    else:
+        if "email" in args:
+            query["profile.email"] = {"$regex": args["email"], "$options": "i"}
+        if "first_name" in args:
+            query["profile.first_name"] = {"$regex": args["first_name"], "$options": "i"}
+        if "last_name" in args:
+            query["profile.last_name"] = {"$regex": args["last_name"], "$options": "i"}
+        if "tier" in args:
+            tiers = args["tier"].split(",")
+            query["subscription.tier"] = {"$in": tiers}
+        if "churn_risk" in args:
+            query["metadata.churn_risk"] = args["churn_risk"]
 
     results = list(db["users"].find(query))
     return jsonify({"users": to_json(results), "count": len(results)}), 200
