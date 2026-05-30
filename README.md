@@ -26,19 +26,24 @@ Built for **COM661 – Full Stack Development** at Ulster University.
 ## Project Structure
 
 ```
-COM661_CW1_SAAS_API/
+COM661_CW2_SaaS_Backend/
 │
-├── app.py               Main Flask entry point
-├── auth.py              Authentication routes + JWT middleware decorators
-├── config.py            MongoDB connection (reads from .env)
-├── seed_data.py         Generates sample data for all collections
-├── requirements.txt     Python dependencies
-├── .env.example         Environment variable template
+├── app.py                   Main Flask entry point, blueprint registration
+├── auth.py                  Authentication routes (login, logout, /me) + JWT middleware
+├── config.py                MongoDB connection (reads from .env)
+├── seed_data.py             Generates sample data for all collections
+├── requirements.txt         Python dependencies
+├── .env.example             Environment variable template
 ├── README.md
 │
+├── middleware/
+│   └── auth_middleware.py   JWT decode helpers, in-memory token blacklist
+│
 └── routes/
-    ├── user.py          User, usage log, API key, alert, activity log, anomaly flag routes
-    └── analytics.py     Aggregation pipeline endpoints + dashboard summary
+    ├── users.py             Users + all sub-resources (usage logs, API keys, alerts)
+    ├── activity_logs.py     Activity log standalone collection routes
+    ├── anomaly_flags.py     Anomaly flag standalone collection routes
+    └── analytics.py         Aggregation pipeline endpoints + dashboard summary
 ```
 
 ---
@@ -263,6 +268,7 @@ login
 | Method | Endpoint | Auth | Description |
 |---|---|---|---|
 | POST | /login | None | Obtain JWT token |
+| POST | /logout | Any | Invalidate token (added to in-memory blacklist) |
 | GET | /me | Any | Current operator info from token |
 
 ---
@@ -272,15 +278,15 @@ login
 | Method | Endpoint | Auth | Description |
 |---|---|---|---|
 | POST | /users | admin | Create monitored user |
-| GET | /users | admin | List users — paginated, filter by tier/status |
-| GET | /users/search | admin | Search by email, tier, status, churn_risk, name |
-| GET | /users/:id | admin | Get single user with all sub-documents |
+| GET | /users | admin, analyst | List users — paginated, filter by tier/status |
+| GET | /users/search | admin, analyst | Search users by name or email |
+| GET | /users/:id | admin, analyst | Get single user with all sub-documents |
 | PUT | /users/:id | admin | Update user fields |
 | DELETE | /users/:id | admin | Delete user + login record |
 
 **Query params for GET /users:** `pn` (page), `ps` (page size), `tier`, `status`
 
-**Query params for GET /users/search:** `email`, `first_name`, `last_name`, `tier` (comma-separated), `status`, `churn_risk`
+**Query params for GET /users/search:** `q` (searches first name, last name, and email), or specific fields: `email`, `first_name`, `last_name`, `tier` (comma-separated), `churn_risk`
 
 ---
 
@@ -321,7 +327,7 @@ login
 
 | Method | Endpoint | Auth | Description |
 |---|---|---|---|
-| POST | /activity-logs | admin | Create activity log |
+| POST | /activity-logs | admin, analyst | Create activity log |
 | GET | /activity-logs | admin, analyst | List logs — paginated, filterable |
 | GET | /activity-logs/:id | admin, analyst | Get single log |
 | PUT | /activity-logs/:id | admin | Update log fields |
