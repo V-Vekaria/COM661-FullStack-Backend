@@ -4,9 +4,10 @@ from middleware.auth_middleware import blacklisted_tokens, require_auth, decode_
 import bcrypt
 import jwt
 import datetime
+import os
 
 auth_bp = Blueprint("auth", __name__)
-SECRET = "saas-monitor-secret-key"
+SECRET = os.getenv("JWT_SECRET_KEY", "dev-only-secret-change-me")
 
 
 @auth_bp.route("/login", methods=["POST"])

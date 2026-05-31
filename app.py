@@ -1,5 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 from config import get_db
 from auth import auth_bp
 from routes.users import users_bp
@@ -7,8 +9,10 @@ from routes.activity_logs import activity_bp
 from routes.anomaly_flags import anomaly_bp
 from routes.analytics import analytics_bp
 
+load_dotenv()
+
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "saas-monitor-secret-key"
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY", "dev-only-secret-change-me")
 CORS(app, origins=["http://localhost:4200"], supports_credentials=True)
 
 # Register blueprints
@@ -25,4 +29,5 @@ def health():
 
 
 if __name__ == "__main__":
-    app.run(port=5001, debug=True)
+    debug = os.getenv("FLASK_DEBUG", "false").lower() == "true"
+    app.run(port=5001, debug=debug)

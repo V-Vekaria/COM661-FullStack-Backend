@@ -2,8 +2,12 @@ from pymongo import MongoClient
 import random
 import bcrypt
 import string
+import os
 from datetime import datetime, timedelta
 from bson import ObjectId
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # CONFIG
 NUM_USERS            = 20
@@ -15,8 +19,8 @@ API_KEYS_PER_USER    = (1, 3)
 ALERTS_PER_USER      = (1, 3)
 RESOLUTION_LOGS_PER_ANOMALY = (1, 3)
 
-client = MongoClient("mongodb://localhost:27017/")
-db     = client["saas_monitoring"]
+client = MongoClient(os.getenv("MONGO_URI", "mongodb://localhost:27017/"))
+db     = client[os.getenv("MONGO_DB_NAME", "saas_monitoring")]
 
 users_col         = db["users"]
 login_col         = db["login"]

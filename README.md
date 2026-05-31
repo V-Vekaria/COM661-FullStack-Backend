@@ -62,7 +62,9 @@ Copy `.env.example` to `.env` and set your MongoDB URI:
 
 ```
 MONGO_URI=mongodb://localhost:27017
-SECRET_KEY=your-secret-key
+MONGO_DB_NAME=saas_monitoring
+JWT_SECRET_KEY=replace-with-a-long-random-dev-secret
+FLASK_DEBUG=false
 ```
 
 ### 3. Seed the database

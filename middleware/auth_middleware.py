@@ -1,8 +1,9 @@
 from functools import wraps
 from flask import request, jsonify
 import jwt
+import os
 
-SECRET = "saas-monitor-secret-key"
+SECRET = os.getenv("JWT_SECRET_KEY", "dev-only-secret-change-me")
 
 # Tokens invalidated by logout are stored here (in-memory blacklist)
 blacklisted_tokens = set()
