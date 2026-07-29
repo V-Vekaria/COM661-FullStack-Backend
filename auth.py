@@ -1,13 +1,12 @@
 from flask import Blueprint, request, jsonify
-from config import get_db
+from config import get_db, get_jwt_secret
 from middleware.auth_middleware import blacklisted_tokens, require_auth, decode_token
 import bcrypt
 import jwt
 import datetime
-import os
 
 auth_bp = Blueprint("auth", __name__)
-SECRET = os.getenv("JWT_SECRET_KEY", "dev-only-secret-change-me")
+SECRET = get_jwt_secret()
 
 
 @auth_bp.route("/login", methods=["POST"])

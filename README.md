@@ -67,6 +67,8 @@ JWT_SECRET_KEY=replace-with-a-long-random-dev-secret
 FLASK_DEBUG=false
 ```
 
+`JWT_SECRET_KEY` is required — the API will refuse to start without it (no hardcoded fallback is used).
+
 ### 3. Seed the database
 
 ```

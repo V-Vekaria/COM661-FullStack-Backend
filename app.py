@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-from config import get_db
+from config import get_db, get_jwt_secret
 from auth import auth_bp
 from routes.users import users_bp
 from routes.activity_logs import activity_bp
@@ -12,7 +12,7 @@ from routes.analytics import analytics_bp
 load_dotenv()
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY", "dev-only-secret-change-me")
+app.config["JWT_SECRET_KEY"] = get_jwt_secret()
 CORS(app, origins=["http://localhost:4200"], supports_credentials=True)
 
 # Register blueprints
